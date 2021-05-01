@@ -3,6 +3,7 @@ import 'package:aagneya_flutter_app/utilities/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:aagneya_flutter_app/utilities/constant3.dart';
 import 'package:aagneya_flutter_app/utilities/constants2.dart';
 
 import 'package:aagneya_flutter_app/services/authservices.dart';
@@ -10,18 +11,15 @@ import 'package:aagneya_flutter_app/services/authservices.dart';
 final SecureStorage secureStorage = SecureStorage();
 String _name;
 
- 
 class AccountScreen extends StatefulWidget {
   @override
   _AccountScreenState createState() => _AccountScreenState();
 }
 
 class _AccountScreenState extends State<AccountScreen> {
-   
   Future<User> getData() async {
     var resp;
-    
-     
+
     try {
       Response response =
           await Dio().post('http://192.168.43.50:2000/app-getUserData',
@@ -36,166 +34,170 @@ class _AccountScreenState extends State<AccountScreen> {
     }
     print(resp);
     User user = User(resp.data['name'], resp.data['email']);
-    
+
     return user;
   }
 
-   
+ 
 
-  Widget _nameWidget() {
-    
-    print(_name);
-    return Container(
-        child: FutureBuilder(
-            future: getData(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              print('snapshot is here');
-              print(snapshot.data);
-              if (snapshot.data == null) {
-                return Container(
-                    child: Center(child: CircularProgressIndicator()));
-              } else {
-                return Text(
-                  snapshot.data.name,
-                  style: TextStyle(
-                    color: Colors.grey[900],
-                    fontFamily: 'OpenSans',
-                    fontSize: 35.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                );
-              }
-            }));
-
-  }
-
-  Widget _emailWidget() {
-    print(_name);
-    
-    return Container(
-        child: FutureBuilder(
-            future: getData(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              print('snapshot is here');
-              print(snapshot.data);
-              if (snapshot.data == null) {
-                return Container(
-                    child: Center(child: CircularProgressIndicator()));
-              } else {
-                return Text(
-                  snapshot.data.email,
+  Widget registeContainer() {
+    return Center(
+      /** Card Widget **/
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+        elevation: 50,
+        shadowColor: Colors.black,
+        color: Colors.grey[350],
+        child: SizedBox(
+          width: 300,
+          height: 400,
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                    child: FutureBuilder(
+                        future: getData(),
+                        builder:
+                            (BuildContext context, AsyncSnapshot snapshot) {
+                          print('snapshot is here');
+                          print(snapshot.data);
+                          if (snapshot.data == null) {
+                            return Container(
+                                child:
+                                    Center(child: CircularProgressIndicator()));
+                          } else {
+                            return Text(
+                              snapshot.data.name,
+                              style: TextStyle(
+                                color: Colors.grey[900],
+                                fontFamily: 'OpenSans',
+                                fontSize: 35.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            );
+                          }
+                        })),
+                Container(
+                    child: Text(
+                  finalEmail,
                   style: TextStyle(
                     color: Colors.grey[900],
                     fontFamily: 'OpenSans',
                     fontSize: 15.0,
                     fontWeight: FontWeight.bold,
                   ),
-                );
-              }
-            }));
-
+                )),
+                SizedBox(
+                  height: 10,
+                ), //SizedBox
+               
+                SizedBox(
+                  height: 10,
+                ), //SizedBox
+                //SizedBox
+              ],
+            ), //Column
+          ), //Padding
+        ), //SizedBox
+      ), //Card
+    ); //Center
   }
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: Stack(
-          children: <Widget>[
-            Container(
-              height: double.infinity,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFFFAFAFA),
-                    Color(0xFFF5F5F5),
-                    Color(0xFFEEEEEE),
-                    Color(0xFFE0E0E0),
-                  ],
-                  stops: [0.1, 0.4, 0.7, 0.9],
-                ),
-              ),
-              child:FutureBuilder(
-              future: getData(),
-             builder: (BuildContext context, AsyncSnapshot snapshot) {
-             if (snapshot.data == null) {
-                return Container(
-                    child: Center(child: CircularProgressIndicator()));
-              } else {
-             return Container(
-              height: double.infinity,
-              child: SingleChildScrollView(
-                physics: AlwaysScrollableScrollPhysics(),
-                padding: EdgeInsets.symmetric(
-                  horizontal: 40.0,
-                  vertical: 120.0,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    
-                    _nameWidget(),
-                    SizedBox(height: 10.0),
-                    _emailWidget(),
-                    SizedBox(height: 30.0),
-                    // _buildNameTF(),
-                    SizedBox(height: 30.0),
-                    // _buildDepartment(),
-                    SizedBox(height: 30.0),
-                    // _buildItem1(),
-                    // _buildItem2(),
-                    // _buildItem3(),
-                    SizedBox(
-                      height: 30.0,
+        body: AnnotatedRegion<SystemUiOverlayStyle>(
+            value: SystemUiOverlayStyle.light,
+            child: Stack(
+              children: <Widget>[
+                Container(
+                    height: double.infinity,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Color(0xFFFAFAFA),
+                          Color(0xFFF5F5F5),
+                          Color(0xFFEEEEEE),
+                          Color(0xFFE0E0E0),
+                        ],
+                        stops: [0.1, 0.4, 0.7, 0.9],
+                      ),
                     ),
-                    // _buildRegisterBtn(),
-                    //
-                    GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pushNamed(HOME);
-                          print("Routing to Home screen");
-                          secureStorage
-                              .deleteSecureData('loggedin')
-                              .then((value) {
-                            print(value);
-                          });
-                          secureStorage
-                              .deleteSecureData('token')
-                              .then((value) {
-                            print(value);
-                          });
-                          token='';
-                        },
-                        child: Text(
-                          'Logout',
-                          style: TextStyle(
-                            color: Colors.grey[900],
-                            fontFamily: 'OpenSans',
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ))
-                  ],
-                ),
-              ),
-            );
-             }
-            }
-            )
-            )
-          ],
-            )
-            )
-            );
-      
-        
-   
-    
+                    child: FutureBuilder(
+                        future: getData(),
+                        builder:
+                            (BuildContext context, AsyncSnapshot snapshot) {
+                          if (snapshot.data == null) {
+                            return Container(
+                                child:
+                                    Center(child: CircularProgressIndicator()));
+                          } else {
+                            return Container(
+                              height: double.infinity,
+                              child: SingleChildScrollView(
+                                physics: AlwaysScrollableScrollPhysics(),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 40.0,
+                                  vertical: 120.0,
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    // _nameWidget(),
+                                    // SizedBox(height: 10.0),
+                                    // _emailWidget(),
+                                    // SizedBox(height: 30.0),
+                                    registeContainer(),
+                                    
+                                    SizedBox(height: 30.0),
+                                    
+                                    GestureDetector(
+                                        onTap: () {
+                                          Navigator.of(context).pushNamed(HOME);
+                                          print("Routing to Home screen");
+                                          secureStorage
+                                              .deleteSecureData('loggedin')
+                                              .then((value) {
+                                            print(value);
+                                          });
+                                          secureStorage
+                                              .deleteSecureData('token')
+                                              .then((value) {
+                                            print(value);
+                                          });
+                                          secureStorage
+                                              .deleteSecureData('email')
+                                              .then((value) {
+                                            print(value);
+                                          });
+                                          token = '';
+                                          finalEmail = ' ';
+                                          finalLoggedIN='no';
+                                        },
+                                        child: Text(
+                                          'Logout',
+                                          style: TextStyle(
+                                            color: Colors.grey[900],
+                                            fontFamily: 'OpenSans',
+                                            fontSize: 15.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ))
+                                  ],
+                                ),
+                              ),
+                            );
+                          }
+                        }))
+              ],
+            )));
   }
 }
 

@@ -17,8 +17,10 @@ final String ACCOUNT='account';
 
 final String SCORE='score';
 
-var token='';
-var finalLoggedIN='';
+var token=' ';
+var finalLoggedIN=' ';
+
+
 
 final kHintTextStyle = TextStyle(
   color: Colors.white54,

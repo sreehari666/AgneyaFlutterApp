@@ -9,6 +9,9 @@ final String SPLASH_SCREEN ='splashscreen';
 // ignore: non_constant_identifier_names
 final String REGISTER='register';
 
+
+
+
 final kHintTextStyle = TextStyle(
   color: Colors.white,
   fontFamily: 'OpenSans',

@@ -2,10 +2,13 @@
 
 
 import 'package:aagneya_flutter_app/services/storage.dart';
+import 'package:aagneya_flutter_app/utilities/constant3.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:aagneya_flutter_app/utilities/constants.dart';
+import 'package:aagneya_flutter_app/utilities/constants2.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 final SecureStorage secureStorage = SecureStorage();
 
@@ -23,6 +26,7 @@ class AuthService {
     var res;
     print(email);
     print(password);
+    
     secureStorage.writeSecureData('email', email);
     
     try {
@@ -46,8 +50,18 @@ class AuthService {
           if(response.data['success']==true){
             secureStorage.writeSecureData('loggedin', 'ok');
             secureStorage.writeSecureData('token', response.data['token']);
+            
             secureStorage.readSecureData('token').then((value){
               token = value;
+              print(token);
+              });
+              secureStorage.readSecureData('loggedin').then((value){
+              finalLoggedIN = value;
+              print(finalLoggedIN);
+              });
+              secureStorage.readSecureData('email').then((value){
+              finalEmail = value;
+              print(finalEmail);
               });
 
           }else{
@@ -87,7 +101,7 @@ class AuthService {
   }
 
   
-  signup(name, email, password) async {
+  signup(name,regno, email, password) async {
     var res;
     print(name);
     print(email);
@@ -102,6 +116,7 @@ class AuthService {
               data: {
                 "key": key,
                 "name": name,
+                "regno": regno,
                 "email": email,
                 "password": password,
               },
@@ -190,5 +205,15 @@ class AuthService {
     print(resp);
     return resp;
   }
+
+  launchURL() async{
+    const url = 'https://docs.google.com/forms/d/e/1FAIpQLSdcNreyWts3H-_0p0019xmZQrA--E7IaV6dLkGP_LBYD3bnqQ/viewform?vc=0&c=0&w=1&flr=0&gxids=7628';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+  }
   
 }
+ 

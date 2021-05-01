@@ -6,11 +6,10 @@ import 'package:aagneya_flutter_app/utilities/constants2.dart';
 import 'package:aagneya_flutter_app/home_page.dart';
 //import 'package:aagneya_flutter_app/utilities/constants.dart';
 import 'package:aagneya_flutter_app/services/authservices.dart';
-
-//List<ListItem> _dropdownItem1 = [];
+import 'package:aagneya_flutter_app/utilities/constant3.dart';
 
 final SecureStorage secureStorage = SecureStorage();
-String finalName = ' ';
+
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -18,43 +17,22 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  
+   
   Widget _buildNameTF() {
-    secureStorage.readSecureData('name').then((value) {
-      finalName = value;
-      print(finalName);
-    });
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          'Name',
-          style: kLabelStyle,
-        ),
-        SizedBox(height: 10.0),
-        Container(
-          alignment: Alignment.centerLeft,
-          decoration: kBoxDecorationStyle,
-          height: 60.0,
-          child: TextField(
-            keyboardType: TextInputType.name,
-            style: TextStyle(
-              color: Colors.grey[500],
-              fontFamily: 'OpenSans',
-            ),
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.person,
-                color: Colors.white,
-              ),
-              hintText: 'Enter your Name',
-              hintStyle: kHintTextStyle,
-            ),
-          ),
-        ),
-      ],
-    );
+    return Container(
+         child:Text(
+                  finalEmail,
+                  style: TextStyle(
+                    color: Colors.grey[900],
+                    fontFamily: 'OpenSans',
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              
+            );
+    
   }
 
   List<ListItem> _dropdownItems = [
@@ -67,8 +45,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   ];
   List<DropdownMenuItem<ListItem>> _dropdownMenuItems;
   ListItem _selectedItem;
-
-  
 
   List<DropdownMenuItem<ListItem>> buildDropDownMenuItems(List listItems) {
     List<DropdownMenuItem<ListItem>> items = List();
@@ -83,124 +59,148 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return items;
   }
 
-  // List<ListItem> _dropdownItem1 = [
-  //   ListItem(1, "Select"),
-  //   ListItem(2, "CSE"),
-  //   ListItem(3, "ECE"),
-  //   ListItem(4, "EEE"),
-  //   ListItem(5, "MECH"),
-  //   ListItem(6, "CIVIL"),
-  // ];
   
-  //  List<ListItem> _dropdownItem1 = [
-     
-  //  ];
 
-   List _data_;
- 
-  String select_Item_1;
-  
-  Future<String> getList() async {
-    
+  // ignore: non_constant_identifier_names
+  List<Items_> _data_ = [];
+  List<Items_> _data_1 = [];
+
+List<Items_> _data_2 = [];
+
+
+  String selectName1 ;
+  String selectName2;
+  String selectName3;
+
+  Future<List<Items_>> getList() async {
     Dio dio = new Dio();
-    
-    var response = await dio.get("http://192.168.43.50:2000/admin/app-get-item-list");
-    
-    print(response);
 
-   
-    setState((){
-      
-       _data_= response as List;
-      
-    });
+    String itemname;
+
+    var usr;
+
+    var res;
+
+    res = await dio.get("http://192.168.43.50:2000/admin/app-get-item-list");
+    //var respon=res.data;
+    print(res.data[0]);
+    var tem=res.data[0];
+    print(tem['itemname']);
     
-    return "success";
+    int i = 0;
+    do {
+      usr = res.data[i];
+
+      itemname = usr["itemname"];
+      int j=i+1;
+      String k=j.toString();
+      Items_ item = Items_(k, itemname);
+
+
+      _data_.add(item);
+
+      i = i + 1;
+      if (res.data.length == i) {
+        _data_ = _data_;
+
+        print(_data_);
+        break;
+      }
+    } while (res.data[i] != null);
+
+    print('items');
+    print(_data_[0].name);
+    return _data_;
+  }
+  Future<List<Items_>> getList1() async {
+    Dio dio = new Dio();
+
+    String itemname;
+
+    var usr;
+
+    var res;
+
+    res = await dio.get("http://192.168.43.50:2000/admin/app-get-item-list");
+    //var respon=res.data;
+
+    int i = 0;
+    do {
+      usr = res.data[i];
+
+      itemname = usr["itemname"];
+      int j = i+1;
+      String k=j.toString();
+      Items_ item = Items_(k, itemname);
+
+      //int j = i + 1;
+      //
+      //Items_ item = Items_(j, itemname);
+
+      _data_1.add(item);
+
+      i = i + 1;
+      if (res.data.length == i) {
+        _data_1 = _data_1;
+
+        print(_data_1);
+        break;
+      }
+    } while (res.data[i] != null);
+
+    print('items');
+    print(_data_1[0].name);
+    return _data_1;
+  }
+  Future<List<Items_>> getList2() async {
+    Dio dio = new Dio();
+
+    String itemname;
+
+    var usr;
+
+    var res;
+
+    res = await dio.get("http://192.168.43.50:2000/admin/app-get-item-list");
+    //var respon=res.data;
+
+    int i = 0;
+    do {
+      usr = res.data[i];
+
+      itemname = usr["itemname"];
+
+      int j = i + 1;
+      String k=j.toString();
+      Items_ item = Items_(k, itemname);
+
+      _data_2.add(item);
+
+      i = i + 1;
+      if (res.data.length == i) {
+        _data_2 = _data_2;
+
+        print(_data_2);
+        break;
+      }
+    } while (res.data[i] != null);
+
+    print('items');
+    print(_data_2[0].name);
+    return _data_2;
   }
 
   void initState() {
     super.initState();
-    getList();
-    _dropdownMenuItems = buildDropDownMenuItems(_dropdownItems);
-    _selectedItem = _dropdownMenuItems[0].value;
-    //_dropdownMenuItem1 = buildDropDownMenuItem1(_dropdownItem1);
-    //_selectedItem1 = _dropdownMenuItem1[0].value;
-    _dropdownMenuItem2 = buildDropDownMenuItem2(_dropdownItem2);
-    _selectedItem2 = _dropdownMenuItem2[0].value;
-    _dropdownMenuItem3 = buildDropDownMenuItem3(_dropdownItem3);
-    _selectedItem3 = _dropdownMenuItem3[0].value;
-    
-    // this.getList();
-  }
 
-
-  // List<DropdownMenuItem<ListItem>> _dropdownMenuItem1;
-   //ListItem _selectedItem1;
-
-  // List<DropdownMenuItem<ListItem>> buildDropDownMenuItem1(List listItems1) {
-  //   List<DropdownMenuItem<ListItem>> items1 = List();
-  //   for (ListItem listItem1 in listItems1) {
-  //     items1.add(_dropdownItem1
-  //       DropdownMenuItem(
-  //         child: Text(listItem1.name),
-  //         value: listItem1,
-  //       ),
-  //     );
-  //   }
-  //   return items1;
-  // }
-
-  List<ListItem> _dropdownItem2 = [
-    ListItem(1, "Select"),
-    ListItem(2, "CSE"),
-    ListItem(3, "ECE"),
-    ListItem(4, "EEE"),
-    ListItem(5, "MECH"),
-    ListItem(6, "CIVIL"),
-  ];
-  List<DropdownMenuItem<ListItem>> _dropdownMenuItem2;
-  ListItem _selectedItem2;
-
-  List<DropdownMenuItem<ListItem>> buildDropDownMenuItem2(List listItems2) {
-    List<DropdownMenuItem<ListItem>> items2 = List();
-    for (ListItem listItem2 in listItems2) {
-      items2.add(
-        DropdownMenuItem(
-          child: Text(listItem2.name),
-          value: listItem2,
-        ),
-      );
-    }
-    return items2;
-  }
-
-  List<ListItem> _dropdownItem3 = [
-    ListItem(1, "Select"),
-    ListItem(2, "CSE"),
-    ListItem(3, "ECE"),
-    ListItem(4, "EEE"),
-    ListItem(5, "MECH"),
-    ListItem(6, "CIVIL"),
-  ];
-  List<DropdownMenuItem<ListItem>> _dropdownMenuItem3;
-  ListItem _selectedItem3;
-
-  List<DropdownMenuItem<ListItem>> buildDropDownMenuItem3(List listItems3) {
-    List<DropdownMenuItem<ListItem>> items3 = List();
-    for (ListItem listItem3 in listItems3) {
-      items3.add(
-        DropdownMenuItem(
-          child: Text(listItem3.name),
-          value: listItem3,
-        ),
-      );
-    }
-    return items3;
-  }
-
-  // String dropdownValue = 'One';
-  Widget _buildDepartment() {
+     _dropdownMenuItems = buildDropDownMenuItems(_dropdownItems);
+     _selectedItem = _dropdownMenuItems[0].value;
      
+
+  }
+
+  Widget _buildDepartment() {
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -219,7 +219,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               value: _selectedItem,
               items: _dropdownMenuItems,
               onChanged: (value) {
-                print(_data_);
+                
                 setState(() {
                   _selectedItem = value;
                   TextStyle(color: Colors.grey);
@@ -240,36 +240,48 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
         SizedBox(height: 10.0),
         Container(
-          alignment: Alignment.center,
-          decoration: kBoxDecorationStyle,
-          height: 60.0,
-          child: DropdownButton(
-                      //itemCount: snapshot.data.length,
-                   
-                      style: TextStyle(color: Colors.grey[500]),
-                      dropdownColor: Colors.grey[350],
-                      hint: Text("Select"),
-                      value: select_Item_1,
-                      items: _data_.map((list){
-                        print(list);
-                        return DropdownMenuItem(
-                          
-                          child: Text(list['itemname']),
-                          value:list['_id'],
+            alignment: Alignment.center,
+            decoration: kBoxDecorationStyle,
+            height: 60.0,
+            child: FutureBuilder(
+                future: getList(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  print('snap');
+                  print(snapshot.data);
+                  //selectName1=snapshot.data[0].name;
+                  
+                  if (snapshot.data == null) {
+                    return Container(
+                        child: Center(child: CircularProgressIndicator()));
+                  } else {
+                    return DropdownButton(
                         
-                        );
-
-                      },).toList(),
-                      
-                      onChanged: (value) {
-                        setState(() {
-                          select_Item_1 = value;
-                          TextStyle(color: Colors.grey);
+                        style: TextStyle(color: Colors.grey[500]),
+                        dropdownColor: Colors.grey[350],
+                        value: selectName1 ,
+                        hint: Text("Select"),
+                        items:snapshot.data
+                            .map<DropdownMenuItem<String>>(
+                                (value) => new DropdownMenuItem<String>(
+                                      value: (value.value).toString(),
+                                      child: new Text(value.name),
+                                    ))
+                            .toList(),
+                        onChanged: (value) {
+                          print("value");
+                          print(value);
+                          print( snapshot.data[value].name);
+                          int _value=value;
+                          String selectN = snapshot.data[value].name;
+                          print(selectN);
+                          setState(() {
+                            
+                            selectName1 = selectN;
+                            TextStyle(color: Colors.grey);
+                          });
                         });
-                      })
-               
-            
-        ),
+                  }
+                })),
       ],
     );
   }
@@ -278,27 +290,46 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        // Text(
-        //   'Items',
-        //   style: kLabelStyle,
-        // ),
+        Text(
+          'Items',
+          style: kLabelStyle,
+        ),
         SizedBox(height: 10.0),
         Container(
-          alignment: Alignment.center,
-          decoration: kBoxDecorationStyle,
-          height: 60.0,
-          child: DropdownButton(
-              style: TextStyle(color: Colors.grey[500]),
-              dropdownColor: Colors.grey[350],
-              value: _selectedItem2,
-              items: _dropdownMenuItem2,
-              onChanged: (value) {
-                setState(() {
-                  _selectedItem2 = value;
-                  TextStyle(color: Colors.grey);
-                });
-              }),
-        ),
+            alignment: Alignment.center,
+            decoration: kBoxDecorationStyle,
+            height: 60.0,
+            child: FutureBuilder(
+                future: getList1(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  print('snap');
+                  print(snapshot.data);
+                  
+                  if (snapshot.data == null) {
+                    return Container(
+                        child: Center(child: CircularProgressIndicator()));
+                  } else {
+                    return DropdownButton(
+                        
+                        style: TextStyle(color: Colors.grey[500]),
+                        dropdownColor: Colors.grey[350],
+                        hint: Text("Select"),
+                        value: selectName2,
+                        items: snapshot.data
+                            .map<DropdownMenuItem<String>>(
+                                (value) => new DropdownMenuItem<String>(
+                                      value: (value.value).toString(),
+                                      child: new Text(value.name),
+                                    ))
+                            .toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            selectName2 = value;
+                            TextStyle(color: Colors.grey);
+                          });
+                        });
+                  }
+                })),
       ],
     );
   }
@@ -307,27 +338,47 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        // Text(
-        //   'Items',
-        //   style: kLabelStyle,
-        // ),
+        Text(
+          'Items',
+          style: kLabelStyle,
+        ),
         SizedBox(height: 10.0),
         Container(
-          alignment: Alignment.center,
-          decoration: kBoxDecorationStyle,
-          height: 60.0,
-          child: DropdownButton(
-              style: TextStyle(color: Colors.grey[500]),
-              dropdownColor: Colors.grey[350],
-              value: _selectedItem3,
-              items: _dropdownMenuItem3,
-              onChanged: (value) {
-                setState(() {
-                  _selectedItem3 = value;
-                  TextStyle(color: Colors.grey);
-                });
-              }),
-        ),
+            alignment: Alignment.center,
+            decoration: kBoxDecorationStyle,
+            height: 60.0,
+            child: FutureBuilder(
+                future: getList2(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  print('snap');
+                  print(snapshot.data);
+                 
+                  if (snapshot.data == null) {
+                    return Container(
+                        child: Center(child: CircularProgressIndicator()));
+                  } else {
+                    return DropdownButton(
+                       
+
+                        style: TextStyle(color: Colors.grey[500]),
+                        dropdownColor: Colors.grey[350],
+                        hint: Text("Select"),
+                        value: selectName3,
+                        items: snapshot.data
+                            .map<DropdownMenuItem<String>>(
+                                (value) => new DropdownMenuItem<String>(
+                                      value: (value.value).toString(),
+                                      child: new Text(value.name),
+                                    ))
+                            .toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            selectName3 = value;
+                            TextStyle(color: Colors.grey);
+                          });
+                        });
+                  }
+                })),
       ],
     );
   }
@@ -339,7 +390,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () => {
-          
           // AuthService().signup(name,email,password).then((val){
           //   print('val is here');
           //   print(val);
@@ -430,8 +480,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       _buildDepartment(),
                       SizedBox(height: 30.0),
                       _buildItem1(),
-                      _buildItem2(),
-                      _buildItem3(),
+                       //_buildItem2(),
+                       //_buildItem3(),
                       SizedBox(
                         height: 30.0,
                       ),
@@ -454,8 +504,15 @@ class ListItem {
 
   ListItem(this.value, this.name);
 }
-class Items{
+
+// ignore: camel_case_types
+class Items_ {
   String value;
   String name;
-  Items(this.value,this.name);
+  Items_(this.value, this.name);
 }
+class Email{
+  String email;
+  Email(this.email);
+}
+    

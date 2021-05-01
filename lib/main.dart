@@ -8,6 +8,8 @@ import 'package:aagneya_flutter_app/screens/login_screen.dart';
 import 'package:aagneya_flutter_app/screens/signin_screen.dart';
 import 'package:aagneya_flutter_app/screens/EventList.dart';
 import 'package:aagneya_flutter_app/utilities/constants.dart';
+import 'package:aagneya_flutter_app/utilities/constant3.dart';
+
 
 // import 'package:animated_splash/animated_splash.dart';
 final SecureStorage secureStorage = SecureStorage();
@@ -25,6 +27,9 @@ class MyApp extends StatelessWidget {
     });
     secureStorage.readSecureData('token').then((value){
      token = value;
+    });
+    secureStorage.readSecureData('email').then((value){
+     finalEmail= value;
     });
     return MaterialApp(
       title: 'Aagneya',

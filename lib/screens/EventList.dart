@@ -74,12 +74,15 @@ class _EventScreenState extends State<EventScreen> {
                   itemBuilder: (BuildContext context, int id ) {
                     return ListTile(
                       leading: CircleAvatar(
+                        
                         backgroundImage: NetworkImage(
                           "https://english.mathrubhumi.com/polopoly_fs/1.1450009.1485010942!/image/image.jpg_gen/derivatives/landscape_728_450/image.jpg",
                         ),
                       ),
+                      trailing: Text(snapshot.data[id].time),
                       title: Text(snapshot.data[id].eventname),
                       subtitle: Text(snapshot.data[id].date),
+                      
                       
                       onTap: (){
 

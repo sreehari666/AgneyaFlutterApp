@@ -61,6 +61,8 @@ class _ScoreScreenState extends State<ScoreScreen> {
                 return RoundedProgressBar(
                   childLeft:
                       Text("$_percent%", style: TextStyle(color: Colors.white)),
+                  childRight:
+                      Text("CSE", style: TextStyle(color: Colors.blue)),
                   percent: data[0].percentCSE,
                   theme: RoundedProgressBarTheme.yellow,
                   borderRadius: BorderRadius.circular(24),
@@ -87,6 +89,8 @@ class _ScoreScreenState extends State<ScoreScreen> {
                 return RoundedProgressBar(
                   childLeft:
                       Text("$_percent%", style: TextStyle(color: Colors.white)),
+                  childRight:
+                      Text("ECE", style: TextStyle(color: Colors.blue)),
                   percent: data[0].percentECE,
                   theme: RoundedProgressBarTheme.yellow,
                   borderRadius: BorderRadius.circular(24),
@@ -112,6 +116,8 @@ class _ScoreScreenState extends State<ScoreScreen> {
                 return RoundedProgressBar(
                   childLeft:
                       Text("$_percent%", style: TextStyle(color: Colors.white)),
+                  childRight:
+                      Text("MECH", style: TextStyle(color: Colors.blue)),
                   percent: data[0].percentMECH,
                   theme: RoundedProgressBarTheme.yellow,
                   borderRadius: BorderRadius.circular(24),
@@ -137,6 +143,8 @@ class _ScoreScreenState extends State<ScoreScreen> {
                 return RoundedProgressBar(
                   childLeft:
                       Text("$_percent%", style: TextStyle(color: Colors.white)),
+                  childRight:
+                      Text("CIVIL", style: TextStyle(color: Colors.blue)),
                   percent: data[0].percentCIVIL,
                   theme: RoundedProgressBarTheme.yellow,
                   borderRadius: BorderRadius.circular(24),
@@ -163,6 +171,8 @@ class _ScoreScreenState extends State<ScoreScreen> {
                 return RoundedProgressBar(
                   childLeft:
                       Text("$_percent%", style: TextStyle(color: Colors.white)),
+                  childRight:
+                      Text("EEE", style: TextStyle(color: Colors.blue)),
                   percent: data[0].percentEEE,
                   theme: RoundedProgressBarTheme.yellow,
                   borderRadius: BorderRadius.circular(24),
@@ -171,11 +181,6 @@ class _ScoreScreenState extends State<ScoreScreen> {
             }));
   }
 
-  Widget _pointsWidget() {
-    return Container(
-      child: Text("CSE 29 points"),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {

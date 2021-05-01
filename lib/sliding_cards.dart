@@ -36,19 +36,19 @@ class _SlidingCardsViewState extends State<SlidingCardsView> {
           SlidingCard(
             name: 'Abhinav',
             date: 'CSE ',
-            assetName: 'https://lh3.googleusercontent.com/AYfugVoIvwIE3wrGHpWF0AccF4DLQBcGvN6Fovf-ojiLc3S3O-6FWdEO93tFcMqud-Wc9GispwGW-Mc-ScQgnGuezYg1K7wliM1kSGCwr_a26YEUctcIFxZgOKtXF-OznjhvAfipmdz9-2iWfUrAmF1oJOCyiygbX9pqUo4MNhLiLu3EsJXMUeM4RVYr3FnUWKVYxsT5WdedKig4I4c8324xws0z4xJFWJ9sj3ggNCLCTe7Wz-6Ouk9pJ7VW_nsl0wN0cMccz3TNKNnLf3SYvMAoI91q7pnJR8NSlIE793BJ66bDAn9xwR1WdjzWiXhXjL4eNKjkibcitEUP3FyXKVzIXNVhaenFRz3fMkIF8EbV7ZUpBdqq_gNfCwT9-HF8LcU1z7rv6kTXnwEN2pJbbHbmWVGEP0zwbDyUk1g3a_sJLPqlKBmwAzPAsAYFyl3NCTqyFXSiPpwZKlQq_2AF55HBNeLTdEiWWEf77IOC4EYEDFPEiBfc2CFmBTHSy5GK6lTq4_saZ03y6rRuo7C8YpNraQ1TMyRD0FY1blj_Y5DVqhXz9xyiGDywF9AHdtRrCr0E-y9TcGEN9jZc9crsMb1_XTnC4MGzVJ3rEnov-pL3eXtiYlSvFCt4nm1kw0CbWEBztz0XN8VcTC5-1Djkq6HVQH-zam-h4_GzThnG-XwDxTZGVhFMYEg27-n-ODkgfdI1ccalTygVPPfPqfZdCJY=w275-h183-no?authuser=2',
+            assetName: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-nL0vJZ5DiB1ShuTJgy4G6el4YCqpgcTPww&usqp=CAU',
             offset: pageOffset,
           ),
           SlidingCard(
             name: 'Yadhav',
             date: 'ECE',
-            assetName: 'https://lh3.googleusercontent.com/Vzy28saa6HerJhV528fUFrxsqNfsXZ2B3lt17ipWVkmN8iAIJWn2pY31OFdyTKhFK44VMw8SdtJNaMkM-peK9u0NIK-3rJy63Oe-ICwYorTCKC3h7Zf7ko0Vyxim18ZR9-T0o5FLGuhFEnC-O9aeNRKpPHLHtbtZ1XjaV8ZZXbcUhA_UhJeMVf6Gp_jvcrQlmbUZHhAT3sAK8-u3Lc0liUrm1aJXc-gmBY3YnKftpipdV-eCla-E9-PSpsLwJH6gjcBBNqYN2gLlhLerQA7PLF3POtkrwL_aleaVc4jUcTDyHuOnH1jlGS12oet1pQRlrJC54XilomKaXERbv4oTS9EdAa0LAKL-CPjjd9cV322tDZqx75HYYud7a2lYuqZtuc2VvQc5QpzjCVguw-PjiBx8W_lGHYnrLhxid7co8UYc3tPU1he9qpuQTkytYPZLrOo5qNAZiei6HiBGb5OyJSkEY7yBYhVK3a8g66Dkr4Ox7jyLryWYYHSKUsvAlAzInuMk2-nMl2_9Bj7rxGY_k7XSQ2EcOVH4yxYXpLiLwF8aDwE2dU8ZTRZUW_s8tvQQZZopKnrOn3WHpLU3EsK7rtzFoBGD1SKn-HQG0syBGLjBZvDgFFNTvVBimNArBxKU5P2bQRBRB9NGaMUmfxgDptVgtPYBFaRSYa4E7HLiHCuJzJ5WufiQ_74ME2ScNzpk4crK8WV2Z_RdvbfoTh3348I=s250-k-no',
+            assetName: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ48D2NWeJiHWSLXi5ZkpBRwVQxKrsaNDyxg&usqp=CAU',
             offset: pageOffset - 1,
           ),
            SlidingCard(
             name: 'Alan',
             date: 'MECH',
-            assetName: 'https://lh3.googleusercontent.com/Vzy28saa6HerJhV528fUFrxsqNfsXZ2B3lt17ipWVkmN8iAIJWn2pY31OFdyTKhFK44VMw8SdtJNaMkM-peK9u0NIK-3rJy63Oe-ICwYorTCKC3h7Zf7ko0Vyxim18ZR9-T0o5FLGuhFEnC-O9aeNRKpPHLHtbtZ1XjaV8ZZXbcUhA_UhJeMVf6Gp_jvcrQlmbUZHhAT3sAK8-u3Lc0liUrm1aJXc-gmBY3YnKftpipdV-eCla-E9-PSpsLwJH6gjcBBNqYN2gLlhLerQA7PLF3POtkrwL_aleaVc4jUcTDyHuOnH1jlGS12oet1pQRlrJC54XilomKaXERbv4oTS9EdAa0LAKL-CPjjd9cV322tDZqx75HYYud7a2lYuqZtuc2VvQc5QpzjCVguw-PjiBx8W_lGHYnrLhxid7co8UYc3tPU1he9qpuQTkytYPZLrOo5qNAZiei6HiBGb5OyJSkEY7yBYhVK3a8g66Dkr4Ox7jyLryWYYHSKUsvAlAzInuMk2-nMl2_9Bj7rxGY_k7XSQ2EcOVH4yxYXpLiLwF8aDwE2dU8ZTRZUW_s8tvQQZZopKnrOn3WHpLU3EsK7rtzFoBGD1SKn-HQG0syBGLjBZvDgFFNTvVBimNArBxKU5P2bQRBRB9NGaMUmfxgDptVgtPYBFaRSYa4E7HLiHCuJzJ5WufiQ_74ME2ScNzpk4crK8WV2Z_RdvbfoTh3348I=s250-k-no',
+            assetName: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWYI9DXmuiYoQMmaTQxbofs90cL3ZirpgE2g&usqp=CAU',
             offset: pageOffset - 1,
           ),
         ],
@@ -84,10 +84,17 @@ class SlidingCard extends StatelessWidget {
           children: <Widget>[
             ClipRRect(
               borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
-              child:Image.network('$assetName'),
+              child:Image.network('$assetName', errorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
+        return Image.asset(
+                'assets/default_person.jpeg',
+                height: MediaQuery.of(context).size.height * 0.3,
+                alignment: Alignment(-offset.abs(), 0),
+                fit: BoxFit.none,
+              );
+         },),
 
               // child: Image.asset(
-              //   'assets/$assetName',
+              //   'assets/default_person.jpeg',
               //   height: MediaQuery.of(context).size.height * 0.3,
               //   alignment: Alignment(-offset.abs(), 0),
               //   fit: BoxFit.none,

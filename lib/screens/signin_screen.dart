@@ -10,7 +10,7 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  var name,email,password,token;
+  var name,email,password,token,regno;
   //bool _rememberMe = false;
   Widget _buildNameTF() {
     return Column(
@@ -49,6 +49,45 @@ class _SignupScreenState extends State<SignupScreen> {
       ],
     );
   }
+
+  Widget _buildRegNoTF() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          'Register Number',
+          style: kLabelStyle,
+        ),
+        SizedBox(height: 10.0),
+        Container(
+          alignment: Alignment.centerLeft,
+          decoration: kBoxDecorationStyle,
+          height: 60.0,
+          child: TextField(
+            keyboardType: TextInputType.text,
+            onChanged: (val){
+                  regno=val;
+                },
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'OpenSans',
+            ),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.only(top: 14.0),
+              prefixIcon: Icon(
+                Icons.password_rounded,
+                color: Colors.white,
+              ),
+              hintText: 'Enter your Register NO ',
+              hintStyle: kHintTextStyle,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
 
   Widget _buildEmailTF() {
     return Column(
@@ -142,7 +181,7 @@ class _SignupScreenState extends State<SignupScreen> {
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () => {
-          AuthService().signup(name,email,password).then((val){
+          AuthService().signup(name,regno,email,password).then((val){
             print('val is here');
             print(val);
             if(val.data['success']==true){
@@ -260,6 +299,8 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       SizedBox(height: 30.0),
                       _buildNameTF(),
+                      SizedBox(height: 30.0),
+                      _buildRegNoTF(),
                       SizedBox(height: 30.0),
                       _buildEmailTF(),
                       SizedBox(
