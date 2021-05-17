@@ -29,87 +29,128 @@ class _AccountScreenState extends State<AccountScreen> {
               options: Options(contentType: Headers.formUrlEncodedContentType));
 
       resp = response;
+      print(resp);
     } catch (e) {
       print(e);
     }
-    print(resp);
-    User user = User(resp.data['name'], resp.data['email']);
-
-    return user;
+    print(resp.data['name']);
+    User user = User(
+        resp.data['name'],
+        resp.data['email'],
+        resp.data['regno'],
+        resp.data['department'],
+        resp.data['semester'],
+        resp.data['chessno'].toString(),
+        resp.data['itemnames']);
+    print(user);
+    var user2 = user;
+    return user2;
   }
 
- 
+  // Widget registeContainer() {
+  //   return Center(
+  //     /** Card Widget **/
+  //     child: Card(
+  //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+  //       elevation: 50,
+  //       shadowColor: Colors.black,
+  //       color: Colors.grey[350],
+  //       child: SizedBox(
+  //         width: 300,
+  //         height: 400,
+  //         child: Padding(
+  //           padding: const EdgeInsets.all(20.0),
+  //           child: Column(
+  //             children: [
+  //               SizedBox(
+  //                 height: 10,
+  //               ),
+  //               Container(
+  //                   child: FutureBuilder(
+  //                       future: getData(),
+  //                       builder:
+  //                           (BuildContext context, AsyncSnapshot snapshot) {
+  //                         print('snapshot is here');
+  //                         print(snapshot.data);
+  //                         if (snapshot.data == null) {
+  //                           return Container(
+  //                               child:
+  //                                   Center(child: CircularProgressIndicator()));
+  //                         } else {
+  //                           return Text(
+  //                             snapshot.data.name,
+  //                             style: TextStyle(
+  //                               color: Colors.grey[900],
+  //                               fontFamily: 'OpenSans',
+  //                               fontSize: 35.0,
+  //                               fontWeight: FontWeight.bold,
+  //                             ),
+  //                           );
+  //                         }
+  //                       })),
+  //               (finalEmail != null)
+  //                   ? Container(
+  //                       child: Text(
+  //                       finalEmail,
+  //                       style: TextStyle(
+  //                         color: Colors.grey[900],
+  //                         fontFamily: 'OpenSans',
+  //                         fontSize: 15.0,
+  //                         fontWeight: FontWeight.bold,
+  //                       ),
+  //                     ))
+  //                   : Container(
+  //                       child: Text(
+  //                       "  ",
+  //                     )),
+  //               SizedBox(
+  //                 height: 10,
+  //               ),
+  //               (finalEmail != null)
+  //                   ? Container(
+  //                       child: Text(
+  //                       finalEmail,
+  //                       style: TextStyle(
+  //                         color: Colors.grey[900],
+  //                         fontFamily: 'OpenSans',
+  //                         fontSize: 15.0,
+  //                         fontWeight: FontWeight.bold,
+  //                       ),
+  //                     ))
+  //                   : Container(
+  //                       child: Text(
+  //                       "  ",
+  //                     )),
 
-  Widget registeContainer() {
-    return Center(
-      /** Card Widget **/
-      child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-        elevation: 50,
-        shadowColor: Colors.black,
-        color: Colors.grey[350],
-        child: SizedBox(
-          width: 300,
-          height: 400,
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                    child: FutureBuilder(
-                        future: getData(),
-                        builder:
-                            (BuildContext context, AsyncSnapshot snapshot) {
-                          print('snapshot is here');
-                          print(snapshot.data);
-                          if (snapshot.data == null) {
-                            return Container(
-                                child:
-                                    Center(child: CircularProgressIndicator()));
-                          } else {
-                            return Text(
-                              snapshot.data.name,
-                              style: TextStyle(
-                                color: Colors.grey[900],
-                                fontFamily: 'OpenSans',
-                                fontSize: 35.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            );
-                          }
-                        })),
-                Container(
-                    child: Text(
-                  finalEmail,
-                  style: TextStyle(
-                    color: Colors.grey[900],
-                    fontFamily: 'OpenSans',
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )),
-                SizedBox(
-                  height: 10,
-                ), //SizedBox
-               
-                SizedBox(
-                  height: 10,
-                ), //SizedBox
-                //SizedBox
-              ],
-            ), //Column
-          ), //Padding
-        ), //SizedBox
-      ), //Card
-    ); //Center
-  }
+  //               SizedBox(
+  //                 height: 10,
+  //               ), //SizedBox
+  //               //SizedBox
+  //             ],
+  //           ), //Column
+  //         ), //Padding
+  //       ), //SizedBox
+  //     ), //Card
+  //   ); //Center
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          shadowColor: Colors.black,
+          iconTheme: IconThemeData(color: Color(0xFFFF9800)),
+          backgroundColor: Colors.grey[200],
+          title: Text(
+            'Account',
+            style: TextStyle(
+              color: Colors.grey[900],
+              fontFamily: 'OpenSans',
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
         body: AnnotatedRegion<SystemUiOverlayStyle>(
             value: SystemUiOverlayStyle.light,
             child: Stack(
@@ -134,11 +175,16 @@ class _AccountScreenState extends State<AccountScreen> {
                         future: getData(),
                         builder:
                             (BuildContext context, AsyncSnapshot snapshot) {
+                          print('snap');
+                          print(snapshot.data);
+                          // var _list = snapshot.data.itemnames;
                           if (snapshot.data == null) {
                             return Container(
                                 child:
                                     Center(child: CircularProgressIndicator()));
                           } else {
+                            print(snapshot.data);
+                            var _list = snapshot.data.itemnames;
                             return Container(
                               height: double.infinity,
                               child: SingleChildScrollView(
@@ -150,16 +196,206 @@ class _AccountScreenState extends State<AccountScreen> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
-                                    // _nameWidget(),
-                                    // SizedBox(height: 10.0),
-                                    // _emailWidget(),
-                                    // SizedBox(height: 30.0),
-                                    registeContainer(),
-                                    
+                                    Center(
+                                      /** Card Widget **/
+                                      child: Card(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(32)),
+                                        elevation: 50,
+                                        shadowColor: Colors.black,
+                                        color: Colors.grey[350],
+                                        child: SizedBox(
+                                          width: 300,
+                                          height: 400,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(20.0),
+                                            child: Column(
+                                              children: [
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  snapshot.data.name,
+                                                  style: TextStyle(
+                                                    color: Colors.grey[900],
+                                                    fontFamily: 'OpenSans',
+                                                    fontSize: 35.0,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                                (snapshot.data.email != null)
+                                                    ? Container(
+                                                        child: Text(
+                                                        snapshot.data.email,
+                                                        style: TextStyle(
+                                                          color:
+                                                              Colors.grey[900],
+                                                          fontFamily:
+                                                              'OpenSans',
+                                                          fontSize: 15.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ))
+                                                    : Container(
+                                                        child: Text(
+                                                        "  ",
+                                                      )),
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                                (snapshot.data.regno != null &&
+                                                        snapshot.data
+                                                                .department !=
+                                                            null &&
+                                                        snapshot.data
+                                                                .semester !=
+                                                            null &&
+                                                        snapshot.data.chessno !=
+                                                            null)
+                                                    ? SizedBox(height: 1.0)
+                                                    : Center(
+                                                        child: Container(
+                                                            child: Text(
+                                                          "You are not registered for any events",
+                                                          style: TextStyle(
+                                                            color: Colors
+                                                                .grey[900],
+                                                            fontFamily:
+                                                                'OpenSans',
+                                                            fontSize: 15.0,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        )),
+                                                      ),
+                                                (snapshot.data.regno != null)
+                                                    ? Container(
+                                                        child: Text(
+                                                        snapshot.data.regno,
+                                                        style: TextStyle(
+                                                          color:
+                                                              Colors.grey[900],
+                                                          fontFamily:
+                                                              'OpenSans',
+                                                          fontSize: 15.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ))
+                                                    : Container(
+                                                        child: Text(
+                                                        "  ",
+                                                      )),
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                                (snapshot.data.department !=
+                                                            null &&
+                                                        snapshot.data
+                                                                .semester !=
+                                                            null)
+                                                    ? Container(
+                                                        child: Text(
+                                                        snapshot.data
+                                                                .department +
+                                                            "  " +
+                                                            snapshot
+                                                                .data.semester,
+                                                        style: TextStyle(
+                                                          color:
+                                                              Colors.grey[900],
+                                                          fontFamily:
+                                                              'OpenSans',
+                                                          fontSize: 15.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ))
+                                                    : Container(
+                                                        child: Text(
+                                                        "  ",
+                                                      )),
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                                (snapshot.data.chessno == null)
+                                                    ? Container(
+                                                        child: Text(
+                                                        "  ",
+                                                      ))
+                                                    : Container(
+                                                        child: Text(
+                                                        "Your Chess No: " +
+                                                            snapshot
+                                                                .data.chessno,
+                                                        style: TextStyle(
+                                                          color:
+                                                              Colors.grey[900],
+                                                          fontFamily:
+                                                              'OpenSans',
+                                                          fontSize: 15.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      )),
+                                                SizedBox(
+                                                  height: 40,
+                                                ),
+                                                (snapshot.data.itemnames !=
+                                                        null)
+                                                    ? Container(
+                                                        child: Text(
+                                                        'Registered Items',
+                                                        style: TextStyle(
+                                                          color:
+                                                              Colors.grey[900],
+                                                          fontFamily:
+                                                              'OpenSans',
+                                                          fontSize: 15.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ))
+                                                    : Text(" "),
+                                                SizedBox(height: 10.0),
+                                                (snapshot.data.itemnames !=
+                                                        null)
+                                                    ? ListView.builder(
+                                                        shrinkWrap: true,
+                                                        itemCount: _list.length,
+                                                        itemBuilder:
+                                                            (context, index) {
+                                                          return Center(
+                                                              child: Text(
+                                                            _list[index],
+                                                            style: TextStyle(
+                                                              color: Colors
+                                                                  .grey[900],
+                                                              fontFamily:
+                                                                  'OpenSans',
+                                                              fontSize: 15.0,
+                                                            ),
+                                                          ));
+                                                        },
+                                                      )
+                                                    : Container(
+                                                        child: Text(
+                                                        "  ",
+                                                      )),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                     SizedBox(height: 30.0),
-                                    
                                     GestureDetector(
                                         onTap: () {
+                                          AuthService().logout().then((value) {
+                                            print(value);
+                                          });
                                           Navigator.of(context).pushNamed(HOME);
                                           print("Routing to Home screen");
                                           secureStorage
@@ -179,7 +415,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                           });
                                           token = '';
                                           finalEmail = ' ';
-                                          finalLoggedIN='no';
+                                          finalLoggedIN = 'no';
                                         },
                                         child: Text(
                                           'Logout',
@@ -204,5 +440,11 @@ class _AccountScreenState extends State<AccountScreen> {
 class User {
   String name;
   String email;
-  User(this.name, this.email);
+  String regno;
+  String department;
+  String semester;
+  String chessno;
+  List itemnames;
+  User(this.name, this.email, this.regno, this.department, this.semester,
+      this.chessno, this.itemnames);
 }

@@ -17,6 +17,14 @@ final String ACCOUNT='account';
 
 final String SCORE='score';
 
+final String GALLERY='gallery';
+
+final String VIDEO_SCREEN='video';
+
+final String WINNER_SCREEN='winner';
+
+final String VIDEO_LIST_SCREEN='videolist';
+
 var token=' ';
 var finalLoggedIN=' ';
 

@@ -19,7 +19,28 @@ class NavDrawer extends StatelessWidget {
                 color: Colors.green,
                 image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: AssetImage('assets/efe-kurnaz.jpg'))),
+                    image: NetworkImage('https://wallpapercave.com/wp/wp7960584.jpg'))
+                    ),
+          ),
+           ListTile(
+            leading: Icon(
+              Icons.login,
+              color: Color(0xFFFF9800),
+            ),
+            title: (finalLoggedIN == 'ok')?Text('Account'):Text('Login'),
+            onTap: () => {
+              (finalLoggedIN == 'ok')?Navigator.of(context).pushNamed(ACCOUNT):Navigator.of(context).pushNamed(SIGN_IN),
+            },
+          ),
+           ListTile(
+            leading: Icon(
+              Icons.app_registration,
+              color: Color(0xFFFF9800),
+            ),
+            title: Text('Register'),
+            onTap: () => {
+              (finalLoggedIN == 'ok')? Navigator.of(context).pushNamed(REGISTER):Navigator.of(context).pushNamed(SIGN_IN),
+            },
           ),
           ListTile(
             leading: Icon(
@@ -27,7 +48,9 @@ class NavDrawer extends StatelessWidget {
               color: Color(0xFFFF9800),
             ),
             title: Text('Photo gallery'),
-            onTap: () => {},
+            onTap: () => {
+              Navigator.of(context).pushNamed(GALLERY),
+            },
           ),
           ListTile(
             leading: Icon(
@@ -35,16 +58,9 @@ class NavDrawer extends StatelessWidget {
               color: Color(0xFFFF9800),
             ),
             title: Text('Watch videos'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {Navigator.of(context).pushNamed(VIDEO_LIST_SCREEN),},
           ),
-          ListTile(
-            leading: Icon(
-              Icons.settings,
-              color: Color(0xFFFF9800),
-            ),
-            title: Text('Settings'),
-            onTap: () => {Navigator.of(context).pop()},
-          ),
+          
           ListTile(
             leading: Icon(
               Icons.border_color,
@@ -60,6 +76,10 @@ class NavDrawer extends StatelessWidget {
             ),
             title: Text('Logout'),
             onTap: () => {
+              AuthService().logout().then((value){
+                print(value);
+                
+              }),
               Navigator.of(context).pushNamed(HOME),
               print("Routing to Home screen"),
               secureStorage.deleteSecureData('loggedin').then((value) {
@@ -72,7 +92,7 @@ class NavDrawer extends StatelessWidget {
                 print(value);
               }),
               token = '',
-              finalEmail = ' ',
+              finalEmail = 'null',
               finalLoggedIN='no',
             },
           ):Text(" "),

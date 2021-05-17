@@ -8,7 +8,7 @@ import 'package:flutter_rounded_progress_bar/rounded_progress_bar_style.dart';
 
 final SecureStorage secureStorage = SecureStorage();
 
-var percent = 50.0;
+
 
 //var totalCSE,totalECE,totalMECH,totalCIVIL,totalEEE,percentCSE,percentECE,percentMECH,percentCIVIL,percentEEE;
 
@@ -26,16 +26,16 @@ class _ScoreScreenState extends State<ScoreScreen> {
     var res = await dio.get("http://192.168.43.50:2000/app-get-score");
     print(res.data['totalCSE']);
     Score score = Score(
-        res.data['totalCSE'],
-        res.data['totalECE'],
-        res.data['totalMECH'],
-        res.data['totalCIVIL'],
-        res.data['totalEEE'],
-        res.data['percentCSE'],
-        res.data['percentECE'],
-        res.data['percentMECH'],
-        res.data['percentCIVIL'],
-        res.data['percentEEE']);
+        res.data['totalCSE'].toDouble(),
+        res.data['totalECE'].toDouble(),
+        res.data['totalMECH'].toDouble(),
+        res.data['totalCIVIL'].toDouble(),
+        res.data['totalEEE'].toDouble(),
+        res.data['percentCSE'].toDouble(),
+        res.data['percentECE'].toDouble(),
+        res.data['percentMECH'].toDouble(),
+        res.data['percentCIVIL'].toDouble(),
+        res.data['percentEEE'].toDouble());
     _score.add(score);
     print(_score);
     
@@ -56,14 +56,16 @@ class _ScoreScreenState extends State<ScoreScreen> {
               } else {
                 print("snaps");
                 var data = snapshot.data;
-                var _percent = data[0].percentCSE;
+                var _percent = data[0].percentCSE.toDouble();
                 print(data[0].percentCSE);
+                double percent_=data[0].percentCSE;
+                print(percent_);
                 return RoundedProgressBar(
                   childLeft:
                       Text("$_percent%", style: TextStyle(color: Colors.white)),
                   childRight:
                       Text("CSE", style: TextStyle(color: Colors.blue)),
-                  percent: data[0].percentCSE,
+                  percent: percent_,
                   theme: RoundedProgressBarTheme.yellow,
                   borderRadius: BorderRadius.circular(24),
                 );
@@ -84,14 +86,15 @@ class _ScoreScreenState extends State<ScoreScreen> {
               } else {
                 print("snaps");
                 var data = snapshot.data;
-                var _percent = data[0].percentECE;
+                var _percent = data[0].percentECE.toDouble();
                 print(data[0].percentECE);
+                double percent_=data[0].percentECE;
                 return RoundedProgressBar(
                   childLeft:
                       Text("$_percent%", style: TextStyle(color: Colors.white)),
                   childRight:
                       Text("ECE", style: TextStyle(color: Colors.blue)),
-                  percent: data[0].percentECE,
+                  percent: percent_,
                   theme: RoundedProgressBarTheme.yellow,
                   borderRadius: BorderRadius.circular(24),
                 );
@@ -111,14 +114,15 @@ class _ScoreScreenState extends State<ScoreScreen> {
               } else {
                 print("snaps");
                 var data = snapshot.data;
-                var _percent = data[0].percentMECH;
+                var _percent = data[0].percentMECH.toDouble();
                 print(data[0].percentMECH);
+                double percent_=data[0].percentMECH;
                 return RoundedProgressBar(
                   childLeft:
                       Text("$_percent%", style: TextStyle(color: Colors.white)),
                   childRight:
                       Text("MECH", style: TextStyle(color: Colors.blue)),
-                  percent: data[0].percentMECH,
+                  percent: percent_,
                   theme: RoundedProgressBarTheme.yellow,
                   borderRadius: BorderRadius.circular(24),
                 );
@@ -138,14 +142,15 @@ class _ScoreScreenState extends State<ScoreScreen> {
               } else {
                 print("snaps");
                 var data = snapshot.data;
-                var _percent = data[0].percentCIVIL;
+                var _percent = data[0].percentCIVIL.toDouble();
                 print(data[0].percentCIVIL);
+                double percent_=data[0].percentCIVIL;
                 return RoundedProgressBar(
                   childLeft:
                       Text("$_percent%", style: TextStyle(color: Colors.white)),
                   childRight:
                       Text("CIVIL", style: TextStyle(color: Colors.blue)),
-                  percent: data[0].percentCIVIL,
+                  percent: percent_,
                   theme: RoundedProgressBarTheme.yellow,
                   borderRadius: BorderRadius.circular(24),
                 );
@@ -166,14 +171,15 @@ class _ScoreScreenState extends State<ScoreScreen> {
               } else {
                  print("snaps");
                   var data =  snapshot.data;
-                  var _percent = data[0].percentEEE;
+                  var _percent = data[0].percentEEE.toString();
                   print(data[0].percentEEE);
+                  double percent_=data[0].percentEEE;
                 return RoundedProgressBar(
                   childLeft:
                       Text("$_percent%", style: TextStyle(color: Colors.white)),
                   childRight:
                       Text("EEE", style: TextStyle(color: Colors.blue)),
-                  percent: data[0].percentEEE,
+                  percent: percent_,
                   theme: RoundedProgressBarTheme.yellow,
                   borderRadius: BorderRadius.circular(24),
                 );
@@ -186,6 +192,12 @@ class _ScoreScreenState extends State<ScoreScreen> {
   Widget build(BuildContext context) {
     
     return Scaffold(
+      appBar: AppBar(
+        shadowColor: Colors.black,
+        iconTheme: IconThemeData(color: Color(0xFFFF9800)),
+        backgroundColor: Colors.grey[200],
+        
+      ),
         body: AnnotatedRegion<SystemUiOverlayStyle>(
             value: SystemUiOverlayStyle.light,
             child: Stack(
@@ -203,19 +215,20 @@ class _ScoreScreenState extends State<ScoreScreen> {
                                     Center(child: CircularProgressIndicator()));
                           } else {
                             var _data=snapshot.data;
-                            var csePoint=_data[0].totalCSE;
-                            var ecePoint=_data[0].totalECE;
-                            var mechPoint=_data[0].totalMECH;
-                            var civilPoint=_data[0].totalCIVIL;
-                            var eeePoint=_data[0].totalEEE;
-                            
+                            var csePoint=_data[0].totalCSE.toDouble();
+                            var ecePoint=_data[0].totalECE.toDouble();
+                            var mechPoint=_data[0].totalMECH.toDouble();
+                            var civilPoint=_data[0].totalCIVIL.toDouble();
+                            var eeePoint=_data[0].totalEEE.toDouble();
+                            print("csepoints");
+                            print(csePoint);
                             return Container(
                               height: double.infinity,
                               child: SingleChildScrollView(
                                 physics: AlwaysScrollableScrollPhysics(),
                                 padding: EdgeInsets.symmetric(
                                   horizontal: 40.0,
-                                  vertical: 120.0,
+                                  vertical: 40.0,
                                 ),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -230,18 +243,29 @@ class _ScoreScreenState extends State<ScoreScreen> {
                                       ),
                                     ),
                                     SizedBox(height: 30.0),
+                                    
+                                    _progressBarCIVIL(),
+                                    SizedBox(height: 30.0),
                                     _progressBarCSE(),
                                     SizedBox(height: 30.0),
                                     _progressBarECE(),
                                     SizedBox(height: 30.0),
-                                    _progressBarMECH(),
-                                    SizedBox(height: 30.0),
-                                    _progressBarCIVIL(),
-                                    SizedBox(height: 30.0),
                                     _progressBarEEE(),
+                                    SizedBox(height: 30.0),
+                                    _progressBarMECH(),
                                     SizedBox(
                                       height: 30.0,
                                     ),
+                                    Container(
+                                      child: Text("CIVIL $civilPoint points",
+                                      style: TextStyle(
+                                        color: Colors.grey[900],
+                                        fontFamily: 'OpenSans',
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),),
+                                    ),
+                                    SizedBox(height: 20.0),
                                     Container(
                                       child: Text("CSE $csePoint points",
                                       style: TextStyle(
@@ -263,26 +287,6 @@ class _ScoreScreenState extends State<ScoreScreen> {
                                     ),
                                     SizedBox(height: 20.0),
                                     Container(
-                                      child: Text("MECH $mechPoint points",
-                                      style: TextStyle(
-                                        color: Colors.grey[900],
-                                        fontFamily: 'OpenSans',
-                                        fontSize: 15.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),),
-                                    ),
-                                    SizedBox(height: 20.0),
-                                    Container(
-                                      child: Text("CIVIL $civilPoint points",
-                                      style: TextStyle(
-                                        color: Colors.grey[900],
-                                        fontFamily: 'OpenSans',
-                                        fontSize: 15.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),),
-                                    ),
-                                    SizedBox(height: 20.0),
-                                    Container(
                                       child: Text("EEE $eeePoint points",
                                       style: TextStyle(
                                         color: Colors.grey[900],
@@ -291,6 +295,19 @@ class _ScoreScreenState extends State<ScoreScreen> {
                                         fontWeight: FontWeight.bold,
                                       ),),
                                     ),
+                                    SizedBox(height: 20.0),
+                                    Container(
+                                      child: Text("MECH $mechPoint points",
+                                      style: TextStyle(
+                                        color: Colors.grey[900],
+                                        fontFamily: 'OpenSans',
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),),
+                                    ),
+                                    
+                                    
+                                    
                                   ],
                                 ),
                               ),
@@ -298,24 +315,23 @@ class _ScoreScreenState extends State<ScoreScreen> {
                           }
                         })
             
-            
               ],
             )));
   }
 }
 
 class Score {
-  var percentCSE;
-  var percentECE;
-  var percentMECH;
-  var percentCIVIL;
-  var percentEEE;
+  double percentCSE;
+  double percentECE;
+  double percentMECH;
+  double percentCIVIL;
+  double percentEEE;
 
-  var totalCSE;
-  var totalECE;
-  var totalMECH;
-  var totalCIVIL;
-  var totalEEE;
+  double totalCSE;
+  double totalECE;
+  double totalMECH;
+  double totalCIVIL;
+  double totalEEE;
 
   Score(
       this.totalCSE,

@@ -1,3 +1,3 @@
 
 
-var finalEmail=' ';
+var finalEmail='null';
