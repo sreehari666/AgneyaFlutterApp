@@ -2,7 +2,7 @@ import 'package:aagneya_flutter_app/services/storage.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:aagneya_flutter_app/utilities/constants.dart';
+import 'package:aagneya_flutter_app/utilities/Url.dart';
 import 'package:flutter_rounded_progress_bar/flutter_rounded_progress_bar.dart';
 import 'package:flutter_rounded_progress_bar/rounded_progress_bar_style.dart';
 
@@ -23,19 +23,21 @@ class _ScoreScreenState extends State<ScoreScreen> {
   Future getScore() async {
     Dio dio = new Dio();
 
-    var res = await dio.get("http://192.168.43.50:2000/app-get-score");
-    print(res.data['totalCSE']);
+    var res = await dio.get(URL+"/app-get-score");
+    print(res.data);
+    print(res.data["civilpoints"]);
+    
     Score score = Score(
-        res.data['totalCSE'].toDouble(),
-        res.data['totalECE'].toDouble(),
-        res.data['totalMECH'].toDouble(),
-        res.data['totalCIVIL'].toDouble(),
-        res.data['totalEEE'].toDouble(),
-        res.data['percentCSE'].toDouble(),
-        res.data['percentECE'].toDouble(),
-        res.data['percentMECH'].toDouble(),
-        res.data['percentCIVIL'].toDouble(),
-        res.data['percentEEE'].toDouble());
+        res.data['civilpoints'].toDouble(),
+        res.data['csepoints'].toDouble(),
+        res.data['ecepoints'].toDouble(),
+        res.data['eeepoints'].toDouble(),
+        res.data['mechpoints'].toDouble(),
+        res.data['civilpercent'].toDouble(),
+        res.data['csepercent'].toDouble(),
+        res.data['ecepercent'].toDouble(),
+        res.data['eeepercent'].toDouble(),
+        res.data['mechpercent'].toDouble());
     _score.add(score);
     print(_score);
     
@@ -334,14 +336,17 @@ class Score {
   double totalEEE;
 
   Score(
+      this.totalCIVIL,
       this.totalCSE,
       this.totalECE,
-      this.totalMECH,
-      this.totalCIVIL,
       this.totalEEE,
+      this.totalMECH,
+      
+      this.percentCIVIL,
       this.percentCSE,
       this.percentECE,
+      this.percentEEE,
       this.percentMECH,
-      this.percentCIVIL,
-      this.percentEEE);
+      
+      );
 }

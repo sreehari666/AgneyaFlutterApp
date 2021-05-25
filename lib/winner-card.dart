@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-
-String url = "http://192.168.43.50:2000";
+import 'package:aagneya_flutter_app/utilities/Url.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class WinnerScreen extends StatefulWidget {
   @override
@@ -23,7 +23,7 @@ class _WinnerScreenState extends State<WinnerScreen> {
     var usr;
     var user1;
     var res;
-    res = await dio.get("http://192.168.43.50:2000/app-get-winner");
+    res = await dio.get(URL+"/app-get-winner");
     var i = 0;
     do {
       print(res.data[i]);
@@ -35,7 +35,7 @@ class _WinnerScreenState extends State<WinnerScreen> {
       semester = usr["semester"];
 
       winnerid = usr["_id"];
-      assetN = "http://192.168.43.50:2000/winner-images/" + winnerid + ".jpg";
+      assetN = URL+"/winner-images/" + winnerid + ".jpg";
       description = usr["description"];
       Winner winnerObj =
           Winner(i.toString(), _name, department, semester, assetN,description);
@@ -62,18 +62,41 @@ class _WinnerScreenState extends State<WinnerScreen> {
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           print(snapshot.data);
           if (snapshot.data == null) {
-            return Container(child: Center(child: CircularProgressIndicator()));
+            print(MediaQuery.of(context).size.height);
+            var x=(MediaQuery.of(context).size.height)/24.0;
+            var y=(MediaQuery.of(context).size.width)/16.0;
+            var h=MediaQuery.of(context).size.height;
+            var w=MediaQuery.of(context).size.width;
+            return Container(
+              padding: EdgeInsets.symmetric(horizontal:h * y, vertical: w * x,),
+              //height: MediaQuery.of(context).size.height * 0.55,
+              height: 407.0,
+              width: MediaQuery.of(context).size.width ,
+              child: Center(child: Card(
+                      child: Center(child:Image.asset('assets/photoloading.gif',
+                                      fit: BoxFit.fitWidth,
+                                      alignment: Alignment.topCenter,
+                                     
+
+                                      )),
+                      shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(32)),
+                      //color: Colors.grey[200],
+                      )));
           } else {
             return Container(
               
               padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-              height: MediaQuery.of(context).size.height * 0.55,
+              
+              //height: MediaQuery.of(context).size.height * 0.55,
+              height: 407.0,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: snapshot.data.length,
                   itemBuilder: (context, index) {
                     return Container(
-                      width: MediaQuery.of(context).size.width * 0.9,
+                      
+                      width: MediaQuery.of(context).size.width *0.9,
                       child: Card(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(32)),
@@ -81,18 +104,47 @@ class _WinnerScreenState extends State<WinnerScreen> {
                         child: Column(
                           children: <Widget>[
                           Container(
+                            
                             width: MediaQuery.of(context).size.width * 0.9,
                             height:
-                                MediaQuery.of(context).size.height * 0.55 / 2,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(32),
-                              image: DecorationImage(
-                                image:
-                                    NetworkImage(snapshot.data[index].imgPath),
-                                fit: BoxFit.fitWidth,
-                                alignment: Alignment.topCenter,
-                              ),
-                            ),
+                                407.0 / 2,
+                            // decoration: BoxDecoration(
+                            //   borderRadius: BorderRadius.circular(32),
+                              // image: DecorationImage(
+                                child:ClipRRect(
+                                  //TODO animated gif in placeholder and default imimage in errorBuilder
+                                  borderRadius: BorderRadius.circular(32),
+                                child:CachedNetworkImage(
+                                    imageUrl: snapshot.data[index].imgPath,
+                                    placeholder: (context, url){
+                                      return Container(child: Image.asset('assets/photoloading.gif',
+                                      fit: BoxFit.fitWidth,
+                                      alignment: Alignment.topCenter,
+                                     
+
+                                      )
+                                      
+                                      );
+                                    },
+                                    errorWidget: (context, url, error) {
+                                      return Container(child: Image.asset('assets/default_person.jpg',
+                                      fit: BoxFit.fitWidth,
+                                      alignment: Alignment.topCenter,),
+
+                                    );
+                                      
+                                    },
+                                    fit: BoxFit.fitWidth,
+                                    alignment: Alignment.topCenter,
+                                     
+                                ),
+                                    // NetworkImage(snapshot.data[index].imgPath),
+                                // fit: BoxFit.fitWidth,
+                                // alignment: Alignment.topCenter,
+
+                                )
+                              //),
+                            //),
                           ),
                            SizedBox(
                               height: 10.0,

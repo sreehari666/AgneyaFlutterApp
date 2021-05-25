@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'details_page.dart';
-
-String url="http://192.168.43.50:2000";
+import 'package:aagneya_flutter_app/utilities/Url.dart';
 int index=0;
 Future imgState;
 Future<List<ImageDetails>> getImage() async {
@@ -10,7 +9,7 @@ Future<List<ImageDetails>> getImage() async {
     List<ImageDetails> _images = [];
     List<ImageDetails> _images_ = [];
     
-    var res = await dio.get(url+"/app-get-gallery-photos");
+    var res = await dio.get(URL+"/app-get-gallery-photos");
     print(res);
     print(res.data[0]);
     //var _data=res.data[0];
@@ -19,7 +18,7 @@ Future<List<ImageDetails>> getImage() async {
     do{
       var _data=res.data[i];
 
-      ImageDetails imgObject=ImageDetails(imagePath: url+'/gallery-images/'+_data['_id']+'.jpg', details: _data['description']);
+      ImageDetails imgObject=ImageDetails(imagePath: URL+'/gallery-images/'+_data['_id']+'.jpg', details: _data['description']);
 
       _images_.add(imgObject);
 
@@ -59,7 +58,9 @@ class GalleryPage extends StatelessWidget {
             //print(snapshot.data[0].imagePath);
             if (snapshot.data == null) {
               return Container(
-                  child: Center(child: CircularProgressIndicator()));
+                  child: Center(child: CircularProgressIndicator(
+                      
+                  )));
             }else{
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

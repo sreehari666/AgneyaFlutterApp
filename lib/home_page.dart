@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                       Positioned(
                         left: 0.0,
                         right: 0.0,
-                        height: 32.0,
+                        height: 25.0,
                         child: AnimatedContainer(
                           duration: const Duration(milliseconds: 300),
                           color:
@@ -104,16 +104,15 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             SafeArea(
               child: Column(
+                
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  SizedBox(height: 40),
+                  SizedBox(height: 25.0,),
                   Tabs(),
-                  SizedBox(height: 20),
                   WinnerScreen(),
 
-                  // SlidingCardsView(),
-                   SizedBox(height: 5),
                    EventBtn(),
+                   SizedBox(height: 25.0,),
                 ],
               ),
             ),
@@ -162,7 +161,8 @@ class _TabsState extends State<Tabs> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25),
+        padding:EdgeInsets.symmetric(horizontal:25.0),
+        //padding: const EdgeInsets.symmetric(horizontal: 25),
         child: Row(
           // child: ListView(
 
@@ -251,7 +251,7 @@ class _EventState extends State<EventBtn> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 25.0),
+      padding: EdgeInsets.symmetric(horizontal: 25.0),
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,

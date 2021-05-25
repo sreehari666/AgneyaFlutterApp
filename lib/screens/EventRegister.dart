@@ -1,13 +1,13 @@
 
 import 'dart:io';
-
+import 'package:aagneya_flutter_app/utilities/Url.dart';
 import 'package:aagneya_flutter_app/services/storage.dart';
 import 'package:aagneya_flutter_app/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-String url_='http://192.168.43.50:2000/app-event-register/';
-String _token=token;
+String url_=URL+'/app-event-register/';
+
 bool isLoading=true;
 final _key = UniqueKey();
 
@@ -43,7 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         children: <Widget>[
             WebView(
             key: _key,
-            initialUrl: url_+_token,
+            initialUrl: url_+token,
             javascriptMode: JavascriptMode.unrestricted,
             onPageFinished: (finish) {
               setState(() {

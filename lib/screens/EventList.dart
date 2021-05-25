@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-String url="http://192.168.43.50:2000";
+import 'package:aagneya_flutter_app/utilities/Url.dart';
+
 class EventScreen extends StatefulWidget {
   @override
   _EventScreenState createState() => _EventScreenState();
@@ -19,7 +20,7 @@ class _EventScreenState extends State<EventScreen> {
     var user1;
     var res;
     
-    res = await dio.get("http://192.168.43.50:2000/app-getAllEvents");
+    res = await dio.get(URL+"/app-getAllEvents");
     var i = 0;
     do {
       print(res.data[i]);
@@ -94,7 +95,7 @@ class _EventScreenState extends State<EventScreen> {
                                     width:double.infinity,
                                     child: Image(
                                       image: NetworkImage(
-                                        url+"/event-images/"+snapshot.data[id].id+".jpg",
+                                        URL+"/event-images/"+snapshot.data[id].id+".jpg",
                                       ),
                                     )),
                               ),

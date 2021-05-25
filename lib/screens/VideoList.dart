@@ -2,10 +2,9 @@ import 'package:aagneya_flutter_app/screens/DetailsVideoPage.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:youtube_explode_dart/youtube_explode_dart.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:aagneya_flutter_app/utilities/Url.dart';
 
-String url = "http://192.168.43.50:2000";
+
 
 class VideoListScreen extends StatelessWidget {
   Future<List<Video_>> getLinks() async {
@@ -17,23 +16,33 @@ class VideoListScreen extends StatelessWidget {
     var usr;
     var user1;
     var res;
+    
 
-    res = await dio.get("http://192.168.43.50:2000/app-get-youtube-links");
+    res = await dio.get(URL+"/app-get-youtube-links");
+
+    print(res.data);
+
+
     var i = 0;
     do {
+
       print(res.data[i]);
       usr = res.data[i];
       _link = usr["ytlink"];
 
-      var yt = YoutubeExplode();
-      var video = await yt.videos.get(_link);
+      String embedUrl = "https://www.youtube.com/oembed?url=$_link&format=json";
 
-      print('Title: ${video.title}');
-      var title_ = video.title;
-      // Close the YoutubeExplode's http client.
-      yt.close();
+      var resDetails = await dio.get(embedUrl);
+
+      print(resDetails);
+
+      print(resDetails.data["title"]);
+
+      var title_=resDetails.data["title"];
+
 
       String video_Id = _link.substring(_link.length - 11);
+      print(video_Id);
 
       Video_ linkObj = Video_(_link, title_, video_Id);
 
@@ -71,6 +80,7 @@ class VideoListScreen extends StatelessWidget {
           child: FutureBuilder(
               future: getLinks(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
+                print(snapshot.data);
                 if (snapshot.data == null) {
                   return Container(
                       child: Center(child: CircularProgressIndicator()));
@@ -121,15 +131,6 @@ class VideoListScreen extends StatelessWidget {
                         )
                         );
                         
-
-                        // return ListTile(
-                        //   tileColor: Colors.grey[200],
-                        //   leading: CircleAvatar(backgroundImage: NetworkImage('https://img.youtube.com/vi/$videoid/0.jpg'),),
-                        //   title: Text(snapshot.data[index].title),
-                        //   onTap: (){
-                        //     Navigator.push(context, MaterialPageRoute(builder: (context) => DetailsVideoPage(snapshot.data[index].link)));
-                        //   },
-                        // );
                       });
                 }
               })),

@@ -2,6 +2,7 @@ import 'package:aagneya_flutter_app/services/authservices.dart';
 import 'package:aagneya_flutter_app/utilities/constant3.dart';
 import 'package:aagneya_flutter_app/utilities/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class NavDrawer extends StatelessWidget {
   @override
@@ -13,13 +14,21 @@ class NavDrawer extends StatelessWidget {
           DrawerHeader(
             child: Text(
               'Aagneya',
-              style: TextStyle(color: Colors.white, fontSize: 25),
+            style: GoogleFonts.dancingScript(
+             textStyle: TextStyle(
+              color: Colors.grey[600],
+              fontSize: 24,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
             ),
             decoration: BoxDecoration(
-                color: Colors.green,
+                color: Colors.white,
                 image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: NetworkImage('https://wallpapercave.com/wp/wp7960584.jpg'))
+                    
+                    image: AssetImage("assets/nav-bar.jpg")
+                    )
                     ),
           ),
            ListTile(

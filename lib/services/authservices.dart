@@ -4,8 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:aagneya_flutter_app/utilities/constants.dart';
-
-import 'package:aagneya_flutter_app/utilities/constants2.dart';
+import 'package:aagneya_flutter_app/utilities/Url.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 final SecureStorage secureStorage = SecureStorage();
@@ -36,7 +35,7 @@ class AuthService {
 
     try {
       Response response =
-          await dio.post('http://192.168.43.50:2000/app-student-login',
+          await dio.post(URL+'/app-student-login',
               data: {
                 "key": key,
                 "email": email,
@@ -111,7 +110,7 @@ class AuthService {
 
     try {
       Response response =
-          await dio.post('http://192.168.43.50:2000/app-student-signup',
+          await dio.post(URL+'/app-student-signup',
               data: {
                 "key": key,
                 "name": name,
@@ -169,7 +168,7 @@ class AuthService {
     var res;
     try {
       Response response =
-          await Dio().get('http://192.168.43.50:2000/app-getAllEvents');
+          await Dio().get(URL+'/app-getAllEvents');
       //print(response.data[1]);
       res = response;
     } on DioError catch (e) {
@@ -187,7 +186,7 @@ class AuthService {
   logout() async {
     var res;
     try {
-      Response response = await Dio().get('http://192.168.43.50:2000/logout');
+      Response response = await Dio().get(URL+'/logout');
       print(response);
       res = response;
     } on DioError catch (e) {
@@ -207,7 +206,7 @@ class AuthService {
 
     try {
       Response response =
-          await Dio().post('http://192.168.43.50:2000/app-getUserData',
+          await Dio().post(URL+'/app-getUserData',
               data: {
                 "token": _token,
               },

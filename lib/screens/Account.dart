@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:aagneya_flutter_app/utilities/constant3.dart';
-import 'package:aagneya_flutter_app/utilities/constants2.dart';
+import 'package:aagneya_flutter_app/utilities/Url.dart';
 
 import 'package:aagneya_flutter_app/services/authservices.dart';
 
@@ -22,7 +22,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
     try {
       Response response =
-          await Dio().post('http://192.168.43.50:2000/app-getUserData',
+          await Dio().post(URL+'/app-getUserData',
               data: {
                 "token": token,
               },
@@ -192,6 +192,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                 padding: EdgeInsets.symmetric(
                                   horizontal: 40.0,
                                   vertical: 120.0,
+                                  
                                 ),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -206,7 +207,8 @@ class _AccountScreenState extends State<AccountScreen> {
                                         shadowColor: Colors.black,
                                         color: Colors.grey[350],
                                         child: SizedBox(
-                                          width: 300,
+                                          width: double.infinity,
+                                          //width: 300,
                                           height: 400,
                                           child: Padding(
                                             padding: const EdgeInsets.all(20.0),
