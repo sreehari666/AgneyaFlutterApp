@@ -59,7 +59,7 @@ class GalleryPage extends StatelessWidget {
             if (snapshot.data == null) {
               return Container(
                   child: Center(child: CircularProgressIndicator(
-                      
+                      color: Color(0xFFFF9800)
                   )));
             }else{
         return Column(

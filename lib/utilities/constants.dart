@@ -25,6 +25,8 @@ final String WINNER_SCREEN='winner';
 
 final String VIDEO_LIST_SCREEN='videolist';
 
+final String UPLOAD_SCREEN='upload';
+
 var token=' ';
 var finalLoggedIN=' ';
 

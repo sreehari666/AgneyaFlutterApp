@@ -47,93 +47,6 @@ class _AccountScreenState extends State<AccountScreen> {
     return user2;
   }
 
-  // Widget registeContainer() {
-  //   return Center(
-  //     /** Card Widget **/
-  //     child: Card(
-  //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-  //       elevation: 50,
-  //       shadowColor: Colors.black,
-  //       color: Colors.grey[350],
-  //       child: SizedBox(
-  //         width: 300,
-  //         height: 400,
-  //         child: Padding(
-  //           padding: const EdgeInsets.all(20.0),
-  //           child: Column(
-  //             children: [
-  //               SizedBox(
-  //                 height: 10,
-  //               ),
-  //               Container(
-  //                   child: FutureBuilder(
-  //                       future: getData(),
-  //                       builder:
-  //                           (BuildContext context, AsyncSnapshot snapshot) {
-  //                         print('snapshot is here');
-  //                         print(snapshot.data);
-  //                         if (snapshot.data == null) {
-  //                           return Container(
-  //                               child:
-  //                                   Center(child: CircularProgressIndicator()));
-  //                         } else {
-  //                           return Text(
-  //                             snapshot.data.name,
-  //                             style: TextStyle(
-  //                               color: Colors.grey[900],
-  //                               fontFamily: 'OpenSans',
-  //                               fontSize: 35.0,
-  //                               fontWeight: FontWeight.bold,
-  //                             ),
-  //                           );
-  //                         }
-  //                       })),
-  //               (finalEmail != null)
-  //                   ? Container(
-  //                       child: Text(
-  //                       finalEmail,
-  //                       style: TextStyle(
-  //                         color: Colors.grey[900],
-  //                         fontFamily: 'OpenSans',
-  //                         fontSize: 15.0,
-  //                         fontWeight: FontWeight.bold,
-  //                       ),
-  //                     ))
-  //                   : Container(
-  //                       child: Text(
-  //                       "  ",
-  //                     )),
-  //               SizedBox(
-  //                 height: 10,
-  //               ),
-  //               (finalEmail != null)
-  //                   ? Container(
-  //                       child: Text(
-  //                       finalEmail,
-  //                       style: TextStyle(
-  //                         color: Colors.grey[900],
-  //                         fontFamily: 'OpenSans',
-  //                         fontSize: 15.0,
-  //                         fontWeight: FontWeight.bold,
-  //                       ),
-  //                     ))
-  //                   : Container(
-  //                       child: Text(
-  //                       "  ",
-  //                     )),
-
-  //               SizedBox(
-  //                 height: 10,
-  //               ), //SizedBox
-  //               //SizedBox
-  //             ],
-  //           ), //Column
-  //         ), //Padding
-  //       ), //SizedBox
-  //     ), //Card
-  //   ); //Center
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -181,7 +94,7 @@ class _AccountScreenState extends State<AccountScreen> {
                           if (snapshot.data == null) {
                             return Container(
                                 child:
-                                    Center(child: CircularProgressIndicator()));
+                                    Center(child: CircularProgressIndicator(color: Color(0xFFFF9800))));
                           } else {
                             print(snapshot.data);
                             var _list = snapshot.data.itemnames;
@@ -329,7 +242,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                                       ))
                                                     : Container(
                                                         child: Text(
-                                                        "Your Chess No: " +
+                                                        "Your Chest No: " +
                                                             snapshot
                                                                 .data.chessno,
                                                         style: TextStyle(

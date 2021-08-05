@@ -13,7 +13,7 @@ class NavDrawer extends StatelessWidget {
         children: <Widget>[
           DrawerHeader(
             child: Text(
-              'Aagneya',
+              'Athene Arts',
             style: GoogleFonts.dancingScript(
              textStyle: TextStyle(
               color: Colors.grey[600],
@@ -69,7 +69,15 @@ class NavDrawer extends StatelessWidget {
             title: Text('Watch videos'),
             onTap: () => {Navigator.of(context).pushNamed(VIDEO_LIST_SCREEN),},
           ),
-          
+          ListTile(
+            leading: Icon(
+              Icons.upload,
+              color: Color(0xFFFF9800),
+            ),
+            title: Text('Upload your works'),
+            onTap: () => {(finalLoggedIN == 'ok')? Navigator.of(context).pushNamed(UPLOAD_SCREEN):Navigator.of(context).pushNamed(SIGN_IN),
+},
+          ),
           ListTile(
             leading: Icon(
               Icons.border_color,

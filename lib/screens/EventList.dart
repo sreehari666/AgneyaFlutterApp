@@ -70,7 +70,7 @@ class _EventScreenState extends State<EventScreen> {
             print(snapshot.data);
             if (snapshot.data == null) {
               return Container(
-                  child: Center(child: CircularProgressIndicator()));
+                  child: Center(child: CircularProgressIndicator(color: Color(0xFFFF9800))));
             } else {
               return ListView.builder(
                 itemCount: snapshot.data.length,

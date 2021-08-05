@@ -41,6 +41,11 @@ dependencies:
   youtube_player_flutter: ^8.0.0
   youtube_explode_dart: ^1.9.3+2
   cached_network_image: ^3.0.0
+  flutter_webview_plugin: ^0.4.0
+  encrypt: ^5.0.0
+  animated_splash_screen: ^1.1.0
+  
+  
 
 dev_dependencies:
   flutter_test:

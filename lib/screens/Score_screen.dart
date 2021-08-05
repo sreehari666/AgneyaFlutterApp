@@ -214,7 +214,7 @@ class _ScoreScreenState extends State<ScoreScreen> {
                           if (snapshot.data == null) {
                             return Container(
                                 child:
-                                    Center(child: CircularProgressIndicator()));
+                                    Center(child: CircularProgressIndicator(color: Color(0xFFFF9800))));
                           } else {
                             var _data=snapshot.data;
                             var csePoint=_data[0].totalCSE.toDouble();

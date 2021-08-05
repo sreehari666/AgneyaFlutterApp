@@ -1,3 +1,4 @@
+
 import 'package:aagneya_flutter_app/services/storage.dart';
 import 'package:aagneya_flutter_app/utilities/constant3.dart';
 import 'package:dio/dio.dart';
@@ -7,13 +8,18 @@ import 'package:aagneya_flutter_app/utilities/constants.dart';
 import 'package:aagneya_flutter_app/utilities/Url.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+
+
 final SecureStorage secureStorage = SecureStorage();
 
 class AuthService {
   String key = "@fdjjjJHDMNXZHHhVXGA899XBHHN^878(&?wshdhshGhghBVDD";
+
   // Response response;
   //var loggedIn=false;
-  //final URL="http://192.168.43.50:2000";
+  //final URL="http://192.168.43.50:2000                                                                   ";
+
+
   var response;
   Dio dio = new Dio();
 
@@ -32,6 +38,8 @@ class AuthService {
     print(password);
 
     secureStorage.writeSecureData('email', email);
+
+    
 
     try {
       Response response =
@@ -104,7 +112,9 @@ class AuthService {
     print(name);
     print(email);
     print(password);
+    
 
+    
     // secureStorage.writeSecureData('email', email);
     // secureStorage.writeSecureData('name', name);
 

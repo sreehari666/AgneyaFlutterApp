@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         iconTheme: IconThemeData(color: Color(0xFFFF9800)),
         backgroundColor: Colors.grey[200],
         title: Text(
-          'Aagneya',
+          'Athene Arts',
           style: GoogleFonts.dancingScript(
             textStyle: TextStyle(
               color: Colors.grey[600],
@@ -41,9 +41,10 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[50],
       body:  Builder(
             builder: (BuildContext context) {
+              
               return OfflineBuilder(
                 connectivityBuilder: (BuildContext context,
                     ConnectivityResult connectivity, Widget child) {
@@ -56,18 +57,19 @@ class _HomePageState extends State<HomePage> {
                       Positioned(
                         left: 0.0,
                         right: 0.0,
-                        height: 25.0,
+                        height: 10.0,
                         child: AnimatedContainer(
+                          
                           duration: const Duration(milliseconds: 300),
                           color:
-                              connected ? Color(0xFFFFFFFF) : Color(0xFFEE4400),
+                              connected ? Colors.grey[50] : Color(0xFFEE4400),
                           child: connected
                               ?  Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     Text(
                                       "ONLINE",
-                                      style: TextStyle(color: Colors.white),
+                                      style: TextStyle(color: Colors.grey[50],fontSize: 6.0,),
                                     ),
                                     
                                   ],
@@ -77,19 +79,20 @@ class _HomePageState extends State<HomePage> {
                                   children: <Widget>[
                                     Text(
                                       "OFFLINE",
-                                      style: TextStyle(color: Colors.white),
+                                      style: TextStyle(color: Colors.grey[50],fontSize: 6.0,)
+
                                     ),
                                     SizedBox(
-                                      width: 8.0,
+                                      width: 4.0,
                                     ),
                                     SizedBox(
-                                      width: 12.0,
-                                      height: 12.0,
+                                      width: 7.0,
+                                      height: 7.0,
                                       child: CircularProgressIndicator(
-                                        strokeWidth: 2.0,
+                                        strokeWidth: 1.0,
                                         valueColor:
                                             AlwaysStoppedAnimation<Color>(
-                                                Colors.white),
+                                                Colors.grey[50]),
                                       ),
                                     ),
                                   ],
