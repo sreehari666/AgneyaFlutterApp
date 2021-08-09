@@ -53,6 +53,14 @@ class NavDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(
+              Icons.add_alert,
+              color: Color(0xFFFF9800),
+            ),
+            title: Text('Announcements'),
+            onTap: () => {Navigator.of(context).pushNamed(ANNOUNCE_SCREEN),},
+          ),
+          ListTile(
+            leading: Icon(
               Icons.photo,
               color: Color(0xFFFF9800),
             ),
@@ -69,6 +77,7 @@ class NavDrawer extends StatelessWidget {
             title: Text('Watch videos'),
             onTap: () => {Navigator.of(context).pushNamed(VIDEO_LIST_SCREEN),},
           ),
+          
           ListTile(
             leading: Icon(
               Icons.upload,

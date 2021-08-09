@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -89,15 +90,42 @@ class _EventScreenState extends State<EventScreen> {
                         child: Column(
                           children: [
                             Container(
-                                alignment: Alignment.bottomLeft,
+                                alignment: Alignment.bottomCenter,
                                 child: SizedBox(
                                     height: 80,
-                                    width:double.infinity,
-                                    child: Image(
-                                      image: NetworkImage(
-                                        URL+"/event-images/"+snapshot.data[id].id+".jpg",
-                                      ),
-                                    )),
+                                    width:80,
+                                    child: CachedNetworkImage(
+                                    imageUrl: URL+"/event-images/"+snapshot.data[id].id+".jpg",
+                                    placeholder: (context, url) {
+                                      return Container(
+                                        height: 100.0,
+                                        width: 100.0,
+                                          child: Image.asset(
+                                        'assets/photoloading.gif',
+                                        fit: BoxFit.cover,
+                                        alignment: Alignment.topCenter,
+                                      ));
+                                    },
+                                    errorWidget: (context, url, error) {
+                                      return ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                        child: Image.asset(
+                                          'assets/nav-bar.jpg',
+                                          fit: BoxFit.cover,
+                                          alignment: Alignment.topCenter,
+                                        ),
+                                      );
+                                    },
+                                    fit: BoxFit.cover,
+                                    alignment: Alignment.topCenter,
+                                   
+                                  ),
+                                    // child: Image(
+                                    //   image: NetworkImage(
+                                    //     URL+"/event-images/"+snapshot.data[id].id+".jpg",
+                                    //   ),
+                                    // )
+                                    ),
                               ),
                             
                             SizedBox(

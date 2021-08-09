@@ -14,10 +14,7 @@ final SecureStorage secureStorage = SecureStorage();
 
 class AuthService {
   String key = "@fdjjjJHDMNXZHHhVXGA899XBHHN^878(&?wshdhshGhghBVDD";
-
-  // Response response;
-  //var loggedIn=false;
-  //final URL="http://192.168.43.50:2000                                                                   ";
+                                                                  
 
 
   var response;
@@ -164,7 +161,7 @@ class AuthService {
       }
     } on DioError catch (e) {
       Fluttertoast.showToast(
-          msg: e.response.data['msg'],
+          msg: e.response!.data['msg'],
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           backgroundColor: Colors.red,
@@ -183,7 +180,7 @@ class AuthService {
       res = response;
     } on DioError catch (e) {
       Fluttertoast.showToast(
-          msg: e.response.data['msg'],
+          msg: e.response!.data['msg'],
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           backgroundColor: Colors.red,
@@ -201,7 +198,7 @@ class AuthService {
       res = response;
     } on DioError catch (e) {
       Fluttertoast.showToast(
-          msg: e.response.data['msg'],
+          msg: e.response!.data['msg'],
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           backgroundColor: Colors.red,

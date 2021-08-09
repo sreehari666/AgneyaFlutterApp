@@ -1,1 +1,1 @@
-final String URL="https://athene-arts-backend.herokuapp.com/";
+final String URL="https://athene-arts-backend.herokuapp.com";

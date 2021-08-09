@@ -3,6 +3,7 @@ import 'package:aagneya_flutter_app/screens/EventRegister.dart';
 import 'package:aagneya_flutter_app/screens/Gallery.dart';
 import 'package:aagneya_flutter_app/screens/Score_screen.dart';
 import 'package:aagneya_flutter_app/screens/VideoList.dart';
+import 'package:aagneya_flutter_app/screens/announce.dart';
 import 'package:aagneya_flutter_app/screens/upload_entries.dart';
 
 import 'package:aagneya_flutter_app/services/storage.dart';
@@ -60,6 +61,8 @@ class MyApp extends StatelessWidget {
         WINNER_SCREEN:(BuildContext context) => WinnerScreen(),
         VIDEO_LIST_SCREEN:(BuildContext context) => VideoListScreen(),
         UPLOAD_SCREEN:(BuildContext context) => UploadScreen(),
+        ANNOUNCE_SCREEN:(BuildContext context) => AnnounceScreen(),
+        
       },
     );
     

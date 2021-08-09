@@ -21,13 +21,18 @@ class VideoListScreen extends StatelessWidget {
     res = await dio.get(URL+"/app-get-youtube-links");
 
     print(res.data);
-
+    var myList= res.data;
+    for (var i=0;i<myList.length/2;i++){
+      var temp = myList[i];
+        myList[i] = myList[myList.length-1-i];
+        myList[myList.length-1-i] = temp;
+    }
 
     var i = 0;
     do {
 
       print(res.data[i]);
-      usr = res.data[i];
+      usr = myList[i];
       _link = usr["ytlink"];
 
       String embedUrl = "https://www.youtube.com/oembed?url=$_link&format=json";
@@ -53,7 +58,7 @@ class VideoListScreen extends StatelessWidget {
         user1 = _links;
         break;
       }
-    } while (res.data[i] != null);
+    } while (myList[i] != null);
 
     print(user1);
     return user1;
@@ -118,13 +123,18 @@ class VideoListScreen extends StatelessWidget {
                               ),
                               SizedBox(width: 10.0),
                               Expanded(
-                                child: Text(
+                                child: new SingleChildScrollView(
+                                  scrollDirection: Axis.vertical,
+                                  child:Text(
                                   snapshot.data[index].title,
+                                  
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 18.0,
                                   ),
                                 ),
+                                )
+                                
                               ),
                             ],
                           ),

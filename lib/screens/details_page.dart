@@ -6,10 +6,10 @@ class DetailsPage extends StatelessWidget {
   final String details;
   final int index;
   DetailsPage(
-      {@required this.imagePath,
+      {required this.imagePath,
       
-      @required this.details,
-      @required this.index});
+      required this.details,
+      required this.index});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +27,7 @@ class DetailsPage extends StatelessWidget {
                     image: DecorationImage(
                       //image: AssetImage(imagePath),
                       image:NetworkImage(imagePath),
+                     
                       fit: BoxFit.cover,
                     ),
                   ),

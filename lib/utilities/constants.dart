@@ -27,6 +27,10 @@ final String VIDEO_LIST_SCREEN='videolist';
 
 final String UPLOAD_SCREEN='upload';
 
+final String ANNOUNCE_SCREEN='announce';
+
+final String PDF_PAGE='pdfpage';
+
 var token=' ';
 var finalLoggedIN=' ';
 

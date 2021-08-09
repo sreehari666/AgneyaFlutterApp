@@ -5,11 +5,11 @@ import 'package:aagneya_flutter_app/utilities/constants.dart';
 import 'package:aagneya_flutter_app/winner-card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_offline/flutter_offline.dart';
+// import 'package:flutter_offline/flutter_offline.dart';
 
 final SecureStorage secureStorage = SecureStorage();
 
-String finalLoggedin;
+String finalLoggedin='';
 
 class HomePage extends StatefulWidget {
   @override
@@ -24,134 +24,60 @@ class _HomePageState extends State<HomePage> {
     });
 
     return Scaffold(
-      drawer: NavDrawer(),
-
-      appBar: AppBar(
-        shadowColor: Colors.black,
-        iconTheme: IconThemeData(color: Color(0xFFFF9800)),
-        backgroundColor: Colors.grey[200],
-        title: Text(
-          'Athene Arts',
-          style: GoogleFonts.dancingScript(
-            textStyle: TextStyle(
-              color: Colors.grey[600],
-              fontSize: 24,
-              fontWeight: FontWeight.w900,
+        drawer: NavDrawer(),
+        appBar: AppBar(
+          shadowColor: Colors.black,
+          iconTheme: IconThemeData(color: Color(0xFFFF9800)),
+          backgroundColor: Colors.grey[200],
+          title: Text(
+            'Athene Arts',
+            style: GoogleFonts.dancingScript(
+              textStyle: TextStyle(
+                color: Colors.grey[600],
+                fontSize: 24,
+                fontWeight: FontWeight.w900,
+              ),
             ),
           ),
         ),
-      ),
-      backgroundColor: Colors.grey[50],
-      body:  Builder(
-            builder: (BuildContext context) {
-              
-              return OfflineBuilder(
-                connectivityBuilder: (BuildContext context,
-                    ConnectivityResult connectivity, Widget child) {
-                  final bool connected =
-                      connectivity != ConnectivityResult.none;
-                  return Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      child,
-                      Positioned(
-                        left: 0.0,
-                        right: 0.0,
-                        height: 10.0,
-                        child: AnimatedContainer(
-                          
-                          duration: const Duration(milliseconds: 300),
-                          color:
-                              connected ? Colors.grey[50] : Color(0xFFEE4400),
-                          child: connected
-                              ?  Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text(
-                                      "ONLINE",
-                                      style: TextStyle(color: Colors.grey[50],fontSize: 6.0,),
-                                    ),
-                                    
-                                  ],
-                                )
-                              : Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text(
-                                      "OFFLINE",
-                                      style: TextStyle(color: Colors.grey[50],fontSize: 6.0,)
-
-                                    ),
-                                    SizedBox(
-                                      width: 4.0,
-                                    ),
-                                    SizedBox(
-                                      width: 7.0,
-                                      height: 7.0,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 1.0,
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                                Colors.grey[50]),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                        ),
+        backgroundColor: Colors.grey[50],
+        body: Builder(
+          builder: (BuildContext context) {
+            
+              return SingleChildScrollView(
+                child: Stack(
+                  children: <Widget>[
+                    SafeArea(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          SizedBox(
+                            height: 25.0,
+                          ),
+                          Tabs(),
+                          SizedBox(
+                            height: 15.0,
+                          ),
+                          WinnerScreen(),
+                          SizedBox(
+                            height: 25.0,
+                          ),
+                          EventBtn(),
+                          SizedBox(
+                            height: 25.0,
+                          ),
+                        ],
                       ),
-                    ],
-                  );
-                },
-                child:   SingleChildScrollView(
-        child:Stack(
-          children: <Widget>[
-            SafeArea(
-              child: Column(
-                
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  SizedBox(height: 25.0,),
-                  Tabs(),
-                  WinnerScreen(),
-
-                   EventBtn(),
-                   SizedBox(height: 25.0,),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+                    ),
+                  ],
+                ),
               );
-            },
-          )
+            //);
+          },
+        )
 
-
-
-
-
-      //   SingleChildScrollView(
-      //   child:Stack(
-      //     children: <Widget>[
-      //       SafeArea(
-      //         child: Column(
-      //           crossAxisAlignment: CrossAxisAlignment.start,
-      //           children: <Widget>[
-      //             SizedBox(height: 40),
-      //             Tabs(),
-      //             SizedBox(height: 20),
-      //             WinnerScreen(),
-
-      //             // SlidingCardsView(),
-      //              SizedBox(height: 5),
-      //              EventBtn(),
-      //           ],
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
-    );
+       
+        );
   }
 }
 
@@ -164,11 +90,10 @@ class _TabsState extends State<Tabs> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding:EdgeInsets.symmetric(horizontal:25.0),
-        //padding: const EdgeInsets.symmetric(horizontal: 25),
+        padding: EdgeInsets.symmetric(horizontal: 25.0),
+        
         child: Row(
-          // child: ListView(
-
+          
           children: <Widget>[
             Expanded(
                 child: GestureDetector(
@@ -195,6 +120,17 @@ class _TabsState extends State<Tabs> {
                 ),
               ),
             )),
+            // Expanded(
+            //     child: GestureDetector(
+            //   onTap: () {
+            //     Navigator.of(context).pushNamed(ANNOUNCE_SCREEN);
+            //   },
+            //   child: Icon(
+            //   Icons.add_alert,
+            //   color: Color(0xFFFF9800),
+              
+            // ),
+            // )),
             Expanded(
                 child: GestureDetector(
               onTap: () {
@@ -240,6 +176,7 @@ class _TabsState extends State<Tabs> {
                 ),
               ),
             )),
+            
           ],
         ));
   }

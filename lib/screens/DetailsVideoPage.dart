@@ -12,7 +12,7 @@ class DetailsVideoPage extends StatelessWidget {
     print(vid_Id);
 
     YoutubePlayerController _controller = YoutubePlayerController(
-      initialVideoId: vid_Id,
+      initialVideoId: vid_Id.toString(),
       flags: YoutubePlayerFlags(
         autoPlay: true,
         mute: false,
@@ -20,20 +20,20 @@ class DetailsVideoPage extends StatelessWidget {
     );
     return Scaffold(
       backgroundColor: Colors.grey[900],
-      appBar: AppBar(
-        shadowColor: Colors.black,
-        iconTheme: IconThemeData(color: Color(0xFFFF9800)),
-        backgroundColor: Colors.grey[200],
-        title: Text(
-          'Watch Events',
-          style: TextStyle(
-            color: Colors.grey[900],
-            fontFamily: 'OpenSans',
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+      // appBar: AppBar(
+      //   shadowColor: Colors.black,
+      //   iconTheme: IconThemeData(color: Color(0xFFFF9800)),
+      //   backgroundColor: Colors.grey[200],
+      //   title: Text(
+      //     'Watch Events',
+      //     style: TextStyle(
+      //       color: Colors.grey[900],
+      //       fontFamily: 'OpenSans',
+      //       fontSize: 20.0,
+      //       fontWeight: FontWeight.bold,
+      //     ),
+      //   ),
+      // ),
       body: Center(
         child: YoutubePlayerBuilder(
             player: YoutubePlayer(
@@ -46,7 +46,7 @@ class DetailsVideoPage extends StatelessWidget {
               return Column(
                 children: [
                   SizedBox(
-                    height: (MediaQuery.of(context).size.height) / 3.8,
+                    height: (MediaQuery.of(context).size.height) / 3.1,
                   ),
                   Center(
                     child: player,

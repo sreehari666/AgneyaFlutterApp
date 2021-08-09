@@ -1,9 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'details_page.dart';
 import 'package:aagneya_flutter_app/utilities/Url.dart';
 int index=0;
-Future imgState;
+//Future imgState;
 Future<List<ImageDetails>> getImage() async {
     Dio dio = new Dio();
     List<ImageDetails> _images = [];
@@ -117,15 +118,42 @@ class GalleryPage extends StatelessWidget {
                       },
                       child: Hero(
                         tag: 'logo$index',
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            image: DecorationImage(
-                              //image: AssetImage(_images[index].imagePath),
-                              image: NetworkImage(snapshot.data[index].imagePath),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                        child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                          child:CachedNetworkImage(
+                                    imageUrl: snapshot.data[index].imagePath,
+                                    placeholder: (context, url) {
+                                      return Container(
+                                        height: 100.0,
+                                        width: 100.0,
+                                          child: Image.asset(
+                                        'assets/photoloading.gif',
+                                        fit: BoxFit.cover,
+                                        alignment: Alignment.topCenter,
+                                      ));
+                                    },
+                                    errorWidget: (context, url, error) {
+                                      return ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                        child: Image.asset(
+                                          'assets/nav-bar.jpg',
+                                          fit: BoxFit.cover,
+                                          alignment: Alignment.topCenter,
+                                        ),
+                                      );
+                                    },
+                                    fit: BoxFit.cover,
+                                    alignment: Alignment.topCenter,
+                                   
+                                  ),
+                          // decoration: BoxDecoration(
+                          //   borderRadius: BorderRadius.circular(15),
+                          //   image: DecorationImage(
+                          //     //image: AssetImage(_images[index].imagePath),
+                          //     image: NetworkImage(snapshot.data[index].imagePath),
+                          //     fit: BoxFit.cover,
+                          //   ),
+                          // ),
                         ),
                       ),
                     );
@@ -150,8 +178,8 @@ class ImageDetails {
   
   final String details;
   ImageDetails({
-    @required this.imagePath,
+    required this.imagePath,
     
-    @required this.details,
+    required this.details,
   });
 }
