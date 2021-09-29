@@ -9,7 +9,7 @@ import 'package:aagneya_flutter_app/utilities/Url.dart';
 import 'package:aagneya_flutter_app/services/authservices.dart';
 
 final SecureStorage secureStorage = SecureStorage();
-String _name='';
+//String _name='';
 
 class AccountScreen extends StatefulWidget {
   @override
